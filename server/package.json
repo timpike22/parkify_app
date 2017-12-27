@@ -17,5 +17,11 @@
     "react-scripts": "^1.0.17",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
   }
 }

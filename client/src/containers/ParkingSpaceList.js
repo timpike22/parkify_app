@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { selectParkingSpace } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
-class ParkingSpace_List extends Component {
+class ParkingSpaceList extends Component {
     renderList () {
         return this.props.parkingSpace.map((spot) => {
             return (
@@ -43,4 +43,4 @@ function mapDispatchToProps(dispatch) {
 
 //Promote parkingSpace from a component to a container - it needs to know
 //about the dispatch method, selectParkingSpace. make it available as a prop
-export default connect (mapStateToProps, mapDispatchToProps)(ParkingSpace_List);
+export default connect (mapStateToProps, mapDispatchToProps)(ParkingSpaceList);
