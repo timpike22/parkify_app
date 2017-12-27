@@ -1,6 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
-var Schema = mongoose.Schema({
+// Save a reference to the Schema constructor
+const Schema = mongoose.Schema;
+
+// Using the Schema constructor, create a new VehicleSchema object
+// This is similar to a Sequelize model
+const VehicleSchema = new Schema({
     driverID: {
         type: Schema.Types.ObjectId,
         ref: "Driver"
@@ -23,12 +28,17 @@ var Schema = mongoose.Schema({
     color: {
         type: String,
         trim: true,
-        required: "Color is Required"
+        required: "Color is Required"    
     },
-    createdAt: {
+    // `date` must be of type Date. The default value is the current date
+    vehicleCreated: {
         type: Date,
         default: Date.now
     }
 });
 
-export default mongoose.model('Vehicle', Schema);
+// This creates our model from the above schema, using mongoose's model method
+const Vehicle = mongoose.model("Vehicle", VehicleSchema);
+
+// Export the Vehicle model
+module.exports = Vehicle;

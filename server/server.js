@@ -1,14 +1,15 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
-var path = require("path");
-var axios = require("axios");
+const express = require("express");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+const path = require("path");
+const axios = require("axios");
+const routes = require("./routes");
 
-var PORT = 3001;
+const PORT = 3000;
 
 // Initialize Express
-var app = express();
+const app = express();
 
 // Configure middleware
 
@@ -23,13 +24,18 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/parkify", {
-    useMongoClient: true
+  useMongoClient: true
 });
 
+app.use(routes);
+
+/*
 //Temporary Objects
 let loggedInOwner = {};
 let loggedInDriver = {};
+*/
 
+/*
 //Routes
 var indexRoute = require("./Controller/index.js");
 app.use("/", indexRoute);
@@ -41,8 +47,9 @@ var parkingSpotRoute = require("./Controller/parkingSpot.js");
 app.use("/", parkingSpotRoute);
 var vehicleRoute = require("./Controller/vehicle.js");
 app.use("/", vehicleRoute);
+*/
 
 // Start the server
-app.listen(PORT, function () {
-    console.log("App running on port " + PORT + "!");
+app.listen(PORT, function() {
+  console.log("App running on port " + PORT + "!");  
 });
