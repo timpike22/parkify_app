@@ -5,8 +5,16 @@ const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
 const routes = require("./routes");
+const PORT = 3001;
+const cors = require('cors');
 
-const PORT = 3000;
+// Configure body parser for AJAX requests
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+// Serve up static assets
+app.use(express.static("client/build"));
+// Add routes, both API and view
+app.use(routes);
 
 // Initialize Express
 const app = express();
@@ -22,11 +30,14 @@ app.use(express.static("public"));
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
-mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/parkify", {
-  useMongoClient: true
-});
-
+mongoose.Promise = global.Promise;
+// Connect to the Mongo DB
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/parkify",
+  {
+    useMongoClient: true
+  }
+);
 app.use(routes);
 
 /*
