@@ -28,7 +28,7 @@ module.exports = {
                     // If saved successfully, send the the new User document to the client
                     res.json(dbVehicle);
             })
-            .catch(err => {res.json(err));
+            .catch(err => {res.json(err)});
     },
     findAll: function(req, res) {
         Vehicle

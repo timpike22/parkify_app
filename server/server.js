@@ -6,8 +6,8 @@ const path = require("path");
 const axios = require("axios");
 const routes = require("./routes");
 const PORT = 3001;
-const cors = require('cors');
 
+const app = express();
 // Configure body parser for AJAX requests
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -17,7 +17,7 @@ app.use(express.static("client/build"));
 app.use(routes);
 
 // Initialize Express
-const app = express();
+
 
 // Configure middleware
 
