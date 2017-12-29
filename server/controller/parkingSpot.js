@@ -160,6 +160,7 @@ module.exports = {
                 $maxDistance: maxDistance
             }
         })
+        .populate("ownerID")
         .limit(limit)
         .exec((err, locations) => {
             if (err) {
