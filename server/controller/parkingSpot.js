@@ -16,8 +16,7 @@ module.exports = {
         let tempObject = req.body;
         const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
         address.replace(/ /g,'');
-        tempObject.lat = 0;
-        tempObject.lng = 0;
+        tempObject.loc = [];
 
         //use axios to pass address into google to return coordinates 
         //then add those coordinates to the temp object
@@ -26,8 +25,8 @@ module.exports = {
             .get("https://maps.google.com/maps/api/geocode/json?key=AIzaSyDu3uARDgsUWZTKOQ_CItX7_grlIU11Ieo&address=" + address)
             .then(response => {
                 const coords = response.data.results[0].geometry.location;
-                tempObject.lat = coords.lat;
-                tempObject.lng = coords.lng;
+                tempObject.loc[0] = coords.lng;
+                tempObject.loc[1] = coords.lat;
             })
             .then(() => {
                 // Create a new parking spot using the temp object
@@ -77,8 +76,7 @@ module.exports = {
         let tempObject = req.body;
         const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
         address.replace(/ /g,'');
-        tempObject.lat = 0;
-        tempObject.lng = 0;
+        tempObject.loc = [];
 
         //use axios to pass address into google to return coordinates 
         //then add those coordinates to the temp object
@@ -87,8 +85,8 @@ module.exports = {
             .get("https://maps.google.com/maps/api/geocode/json?key=AIzaSyDu3uARDgsUWZTKOQ_CItX7_grlIU11Ieo&address=" + address)
             .then(response => {
                 const coords = response.data.results[0].geometry.location;
-                tempObject.lat = coords.lat;
-                tempObject.lng = coords.lng;
+                tempObject.loc[0] = coords.lng;
+                tempObject.loc[1] = coords.lat;
             })
             .then(() => {
                 // Update parking spot using the temp object
@@ -100,8 +98,7 @@ module.exports = {
                             city: tempObject.city,
                             state: tempObject.state,
                             zip: tempObject.zip,
-                            lat: tempObject.lat,
-                            lng: tempObject.lng
+                            loc: tempObject.loc
                         }
                     })
                     .then(dbParkingSpot => res.json(dbParkingSpot))
@@ -139,5 +136,38 @@ module.exports = {
                         }
                     });
             });
+    },
+    findNear: function(req, res, next) {
+        let limit = req.query.limit || 10;
+
+        // get the max distance or set it to 8 miles
+        let maxDistance = req.query.distance || 10;
+
+        // we need to convert the distance to radians
+        // the radius of the Earth is approximately 3959 miles
+        maxDistance /= 3959;
+
+        // get coordinates [ <longitude> , <latitude> ]
+        let coords = [];
+        coords[0] = req.query.longitude;
+        coords[1] = req.query.latitude;
+
+        //find a location
+        ParkingSpot
+        .find({
+            loc: {
+                $near: coords,
+                $maxDistance: maxDistance
+            }
+        })
+        .limit(limit)
+        .exec((err, locations) => {
+            if (err) {
+                res.send(err);
+            }
+
+            res.send(locations);
+        });
+
     }
 };
