@@ -56,11 +56,9 @@ const DriverSchema = new Schema({
       type: Number,
       required: "Zip is Required"
   },
-  lat: {
-    type: Number
-  },
-  lng: {
-      type: Number
+  loc: {
+    type: [Number], //[<longitude>, <latitude>]
+    index: '2d'
   },
   phoneNumber: {
     type: String,
