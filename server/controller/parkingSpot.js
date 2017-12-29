@@ -141,11 +141,11 @@ module.exports = {
         let limit = req.query.limit || 10;
 
         // get the max distance or set it to 8 miles
-        let maxDistance = req.query.distance || 10;
+        let maxDistance = req.query.distance;
 
         // we need to convert the distance to radians
-        // the radius of the Earth is approximately 3959 miles
-        maxDistance /= 3959;
+        // the radius of the Earth is approximately 3963 miles
+        maxDistance /= 3963.192;
 
         // get coordinates [ <longitude> , <latitude> ]
         let coords = [];
@@ -156,12 +156,12 @@ module.exports = {
         ParkingSpot
         .find({
             loc: {
-                $near: coords,
+                $nearSphere: coords,
                 $maxDistance: maxDistance
             }
         })
         .populate("ownerID")
-        .limit(limit)
+        /*.limit(limit)*/
         .exec((err, locations) => {
             if (err) {
                 res.send(err);
