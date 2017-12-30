@@ -1,18 +1,17 @@
-
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import ReduxPromise from 'redux-promise';
 
-import App from './components/App';
-import reducers from './reducers';
+import { store } from './helpers';
+import { App } from './App';
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+// setup fake backend
+import { configureFakeBackend } from './helpers';
+configureFakeBackend();
 
-ReactDOM.render(
-    <Provider store={createStoreWithMiddleware(reducers)}>
+render(
+    <Provider store={store}>
         <App />
-    </Provider>
-    , document.querySelector('.container'));
-
+    </Provider>,
+    document.querySelector('.container')
+);
