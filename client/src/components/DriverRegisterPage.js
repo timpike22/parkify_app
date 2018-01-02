@@ -1,16 +1,16 @@
-import {React} from 'react';
+import { React, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../actions';
-import { UserType } from './UserType'
+import { driverActions } from '../actions';
+
 
 class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: {
+            driver: {
                 firstName: '',
                 lastName: '',
                 email: '',
@@ -23,16 +23,16 @@ class RegisterPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    setUser(event) {
+    setdriver(event) {
         console.log(event.target.value);
     }
 
     handleChange(event) {
         const { name, value } = event.target;
-        const { user } = this.state;
+        const { driver } = this.state;
         this.setState({
-            user: {
-                ...user,
+            driver: {
+                ...driver,
                 [name]: value
             }
         });
@@ -42,49 +42,49 @@ class RegisterPage extends React.Component {
         event.preventDefault();
 
         this.setState({ submitted: true });
-        const { user } = this.state;
+        const { driver } = this.state;
         const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.email && user.password) {
-            dispatch(userActions.register(user));
+        if (driver.firstName && driver.lastName && driver.email && driver.password) {
+            dispatch(driverActions.register(driver));
         }
     }
 
     render() {
         const { registering } = this.props;
-        const { user, submitted } = this.state;
+        const { driver, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
-                <h2>Register for Parkify</h2>
+                <h2>Register to Park Your Car</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !driver.firstName ? ' has-error' : '')}>
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
-                        {submitted && !user.firstName &&
+                        <input type="text" className="form-control" name="firstName" value={driver.firstName} onChange={this.handleChange} />
+                        {submitted && !driver.firstName &&
                             <div className="help-block">First Name is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !driver.lastName ? ' has-error' : '')}>
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
-                        {submitted && !user.lastName &&
+                        <input type="text" className="form-control" name="lastName" value={driver.lastName} onChange={this.handleChange} />
+                        {submitted && !driver.lastName &&
                             <div className="help-block">Last Name is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !driver.email ? ' has-error' : '')}>
                         <label htmlFor="email">Email</label>
-                        <input type="email" className="form-control" name="email" value={user.Email} onChange={this.handleChange} />
-                        {submitted && !user.email &&
+                        <input type="email" className="form-control" name="email" value={driver.Email} onChange={this.handleChange} />
+                        {submitted && !driver.email &&
                             <div className="help-block">Email is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !driver.password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
-                        {submitted && !user.password &&
+                        <input type="password" className="form-control" name="password" value={driver.password} onChange={this.handleChange} />
+                        {submitted && !driver.password &&
                             <div className="help-block">Password is required</div>
                         }
                     </div>
-                    <UserType />
+                    
                     
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>

@@ -28,7 +28,7 @@ class ParkingSpaceList extends Component {
 
 function mapStateToProps(state){
     //whatever is returned will show up as props
-    //inside ParkingSpace_Lis
+    //inside ParkingSpace_List
     return {
         parkingSpace: state.parkingSpace
     };

@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../actions';
+import { driverActions } from '../actions';
 
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
 
         // reset login status
-        this.props.dispatch(userActions.logout());
+        this.props.dispatch(driverActions.logout());
 
         this.state = {
             email: '',
@@ -24,6 +24,7 @@ class LoginPage extends React.Component {
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
+        console.log([name]);
     }
 
     handleSubmit(e) {
@@ -33,7 +34,7 @@ class LoginPage extends React.Component {
         const { email, password } = this.state;
         const { dispatch } = this.props;
         if (email && password) {
-            dispatch(userActions.login(email, password));
+            dispatch(driverActions.login(email, password));
         }
     }
 

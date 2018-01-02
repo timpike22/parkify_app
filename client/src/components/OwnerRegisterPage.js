@@ -1,16 +1,16 @@
-import {React} from 'react';
+import { React, Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import { userActions } from '../actions';
-import { UserType } from './UserType'
+import { ownerActions } from '../actions';
+
 
 class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            user: {
+            owner: {
                 firstName: '',
                 lastName: '',
                 email: '',
@@ -23,16 +23,16 @@ class RegisterPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    setUser(event) {
+    setowner(event) {
         console.log(event.target.value);
     }
 
     handleChange(event) {
         const { name, value } = event.target;
-        const { user } = this.state;
+        const { owner } = this.state;
         this.setState({
-            user: {
-                ...user,
+            owner: {
+                ...owner,
                 [name]: value
             }
         });
@@ -42,49 +42,49 @@ class RegisterPage extends React.Component {
         event.preventDefault();
 
         this.setState({ submitted: true });
-        const { user } = this.state;
+        const { owner } = this.state;
         const { dispatch } = this.props;
-        if (user.firstName && user.lastName && user.email && user.password) {
-            dispatch(userActions.register(user));
+        if (owner.firstName && owner.lastName && owner.email && owner.password) {
+            dispatch(ownerActions.register(owner));
         }
     }
 
     render() {
         const { registering } = this.props;
-        const { user, submitted } = this.state;
+        const { owner, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
-                <h2>Register for Parkify</h2>
+                <h2>Register to Rent Your Space</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
-                    <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !owner.firstName ? ' has-error' : '')}>
                         <label htmlFor="firstName">First Name</label>
-                        <input type="text" className="form-control" name="firstName" value={user.firstName} onChange={this.handleChange} />
-                        {submitted && !user.firstName &&
+                        <input type="text" className="form-control" name="firstName" value={owner.firstName} onChange={this.handleChange} />
+                        {submitted && !owner.firstName &&
                             <div className="help-block">First Name is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.lastName ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !owner.lastName ? ' has-error' : '')}>
                         <label htmlFor="lastName">Last Name</label>
-                        <input type="text" className="form-control" name="lastName" value={user.lastName} onChange={this.handleChange} />
-                        {submitted && !user.lastName &&
+                        <input type="text" className="form-control" name="lastName" value={owner.lastName} onChange={this.handleChange} />
+                        {submitted && !owner.lastName &&
                             <div className="help-block">Last Name is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.email ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !owner.email ? ' has-error' : '')}>
                         <label htmlFor="email">Email</label>
-                        <input type="email" className="form-control" name="email" value={user.Email} onChange={this.handleChange} />
-                        {submitted && !user.email &&
+                        <input type="email" className="form-control" name="email" value={owner.Email} onChange={this.handleChange} />
+                        {submitted && !owner.email &&
                             <div className="help-block">Email is required</div>
                         }
                     </div>
-                    <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
+                    <div className={'form-group' + (submitted && !owner.password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
-                        {submitted && !user.password &&
+                        <input type="password" className="form-control" name="password" value={owner.password} onChange={this.handleChange} />
+                        {submitted && !owner.password &&
                             <div className="help-block">Password is required</div>
                         }
                     </div>
-                    <UserType />
+                    
                     
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>

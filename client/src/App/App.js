@@ -38,6 +38,8 @@ class App extends React.Component {
             }
             <Router history={history}>
               <div>
+                <PrivateOwnerRoute exact path="/owner" component={OwnerHomePage} />
+                <PrivateDriverRoute exact path="/driver" component={DriverHomePage} />
                 <PrivateRoute exact path="/" component={HomePage} />
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
