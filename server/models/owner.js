@@ -13,7 +13,8 @@ const OwnerSchema = new Schema({
     type: String,
     unique: true,
     trim: true,
-    match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
+    match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
+    required: "Email is Required",
   },
   // `password` must be of type String
   // `password` will trim leading and trailing whitespace before it's saved
@@ -33,28 +34,24 @@ const OwnerSchema = new Schema({
   firstName: {
     type: String,
     trim: true,
-    required: "First Name is Required",
+    required: "First Name is Required"
   },
   lastName: {
     type: String,
     trim: true,
-    required: "First Name is Required",
+    required: "Last Name is Required"
   },
   street: {
-    type: String,
-    required: true
+    type: String
   },
   city: {
-    type: String,
-    required: true
+    type: String
   },
   state: {
-    type: String,
-    required: true
+    type: String
   },
   zip: {
-    type: Number,
-    required: true
+    type: Number
   },
   loc: {
     type: [Number], //[<longitude>, <latitude>]
@@ -68,7 +65,6 @@ const OwnerSchema = new Schema({
       },
       message: '{VALUE} is not a valid phone number!'
     },*/
-    required: [true, 'User phone number required']
   },
   parkingSpots: [
     {
