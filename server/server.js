@@ -5,6 +5,10 @@ const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
 const routes = require("./routes");
+const ownerRoute = require("./routes/api/owners");
+const parkingSpotRoute = require("./routes/api/parkingSpots");
+const driverRoute = require("./routes/api/drivers");
+const vehicleRoute = require("./routes/api/vehicles");
 const PORT = 3001;
 
 const app = express();
@@ -13,12 +17,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Serve up static assets
 app.use(express.static("client/public"));
-// Add routes, both API and view
-app.use(routes);
 
 // Initialize Express
-
-
 // Configure middleware
 
 // Use morgan logger for logging requests
@@ -38,27 +38,11 @@ mongoose.connect(
     useMongoClient: true
   }
 );
-app.use(routes);
 
-/*
-//Temporary Objects
-let loggedInOwner = {};
-let loggedInDriver = {};
-*/
-
-/*
-//Routes
-var indexRoute = require("./Controller/index.js");
-app.use("/", indexRoute);
-var ownerRoute = require("./Controller/owner.js");
-app.use("/", ownerRoute);
-var driverRoute = require("./Controller/driver.js");
-app.use("/", driverRoute);
-var parkingSpotRoute = require("./Controller/parkingSpot.js");
-app.use("/", parkingSpotRoute);
-var vehicleRoute = require("./Controller/vehicle.js");
-app.use("/", vehicleRoute);
-*/
+app.use("/owner", ownerRoute);
+app.use("/parkingSpot", parkingSpotRoute);
+app.use("/driver", driverRoute);
+app.use("/vehicle", vehicleRoute);
 
 // Start the server
 app.listen(PORT, function() {

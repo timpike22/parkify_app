@@ -39,7 +39,13 @@ const ParkingSpotSchema = new Schema({
   parkingSpotCreated: {
     type: Date,
     default: Date.now
-  }
+  },
+  rentals: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Rental"
+    }
+  ]
 });
 
 // This creates our model from the above schema, using mongoose's model method
