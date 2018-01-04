@@ -13,7 +13,8 @@ const DriverSchema = new Schema({
     type: String,
     unique: true,
     trim: true,
-    match: [/.+\@.+\..+/, "Please enter a valid e-mail address"]
+    match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
+    required: "Email is Required"
   },
   // `password` must be of type String
   // `password` will trim leading and trailing whitespace before it's saved
@@ -38,23 +39,19 @@ const DriverSchema = new Schema({
   lastName: {
     type: String,
     trim: true,
-    required: "Last Name is Required",
+    required: "Last Name is Required"
   },
   street: {
-      type: String,
-      required: "Address is Required"
+      type: String
   },
   city: {
-      type: String,
-      required: "City is Required"
+      type: String
   },
   state: {
-      type: String,
-      required: "State is Required"
+      type: String
   },
   zip: {
-      type: Number,
-      required: "Zip is Required"
+      type: Number
   },
   lat: {
     type: Number
@@ -70,7 +67,6 @@ const DriverSchema = new Schema({
       },
       message: '{VALUE} is not a valid phone number!'
     },*/
-    required: [true, 'User phone number required']
   },
   vehicles: [
     {
