@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { ownerActions } from '../actions';
 
 
-class RegisterPage extends React.Component {
+class OwnerRegisterPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -72,7 +72,7 @@ class RegisterPage extends React.Component {
                     </div>
                     <div className={'form-group' + (submitted && !owner.email ? ' has-error' : '')}>
                         <label htmlFor="email">Email</label>
-                        <input type="email" className="form-control" name="email" value={owner.Email} onChange={this.handleChange} />
+                        <input type="email" className="form-control" name="email" value={owner.email} onChange={this.handleChange} />
                         {submitted && !owner.email &&
                             <div className="help-block">Email is required</div>
                         }
@@ -104,5 +104,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
-export { connectedRegisterPage as RegisterPage };
+const connectedOwnerRegisterPage = connect(mapStateToProps)(OwnerRegisterPage);
+export { connectedOwnerRegisterPage as OwnerRegisterPage };

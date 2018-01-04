@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { ownerActions } from '../actions';
 
-class LoginPage extends React.Component {
+class OwnerLoginPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -76,5 +76,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export { connectedLoginPage as LoginPage };
+const connectedOwnerLoginPage = connect(mapStateToProps)(OwnerLoginPage);
+export { connectedOwnerLoginPage as OwnerLoginPage };

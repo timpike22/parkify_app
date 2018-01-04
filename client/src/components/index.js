@@ -1,5 +1,6 @@
 export * from './PrivateRoute';
-export * from './LoginPage';
+export * from './DriverRegisterPage';
+export * from './OwnerRegisterPage';
 export * from './RegisterPage';
 export * from './HomePage';
 export { default } from './UserType';

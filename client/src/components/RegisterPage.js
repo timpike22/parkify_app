@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../actions';
-import { UserType } from './UserType'
+
 
 class RegisterPage extends React.Component {
     constructor(props) {
@@ -84,8 +84,6 @@ class RegisterPage extends React.Component {
                             <div className="help-block">Password is required</div>
                         }
                     </div>
-                    <UserType />
-                    
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
 

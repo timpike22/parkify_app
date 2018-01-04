@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { driverActions } from '../actions';
 
-class LoginPage extends React.Component {
+class DriverLoginPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -76,5 +76,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedLoginPage = connect(mapStateToProps)(LoginPage);
-export { connectedLoginPage as LoginPage };
+const connectedDriverLoginPage = connect(mapStateToProps)(DriverLoginPage);
+export { connectedDriverLoginPage as DriverLoginPage };
