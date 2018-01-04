@@ -9,10 +9,13 @@ import SearchBar from '../containers/SearchBar';
 import { LoginPage } from '../components';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
-import { PrivateRoute } from '../components';
+import { PrivateDriverRoute } from '../components';
+import { PrivateOwnerRoute } from '../components';
 import { HomePage } from '../components';
-
-import { RegisterPage } from '../components';
+import { DriverHomePage } from '../components';
+import { OwnerHomePage } from '../components';
+import { OwnerRegisterPage } from '../components';
+import { DriverRegisterPage } from '../components';
 
 
 
@@ -38,9 +41,10 @@ class App extends React.Component {
             }
             <Router history={history}>
               <div>
-                <PrivateRoute exact path="/" component={HomePage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
+                <PrivateOwnerRoute exact path="/owner" component={OwnerHomePage} />
+                <PrivateDriverRoute exact path="/driver" component={DriverHomePage} />
+                <Route path="/login" component={OwnerRegisterPage} />
+                <Route path="/register" component={OwnerRegisterPage} />
               </div>
             </Router>
           </div>
