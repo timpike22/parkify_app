@@ -1,8 +1,10 @@
-import { React, Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { ownerActions } from '../actions';
+
+import axios from 'axios';
 
 
 class OwnerRegisterPage extends React.Component {
@@ -21,6 +23,12 @@ class OwnerRegisterPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        axios.get('/owner')
+            .then(res => console.log(res))
+            .catch(e => console.log(e));
     }
 
     setowner(event) {

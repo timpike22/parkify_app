@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../style/App.css';
@@ -43,8 +43,8 @@ class App extends React.Component {
               <div>
                 <PrivateOwnerRoute exact path="/owner" component={OwnerHomePage} />
                 <PrivateDriverRoute exact path="/driver" component={DriverHomePage} />
+                <Route path="/" component={OwnerRegisterPage} />
                 <Route path="/login" component={OwnerRegisterPage} />
-                <Route path="/register" component={OwnerRegisterPage} />
               </div>
             </Router>
           </div>
