@@ -6,7 +6,6 @@ import ParkingSpace_List from '../containers/ParkingSpaceList';
 import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
 import SearchBar from '../containers/SearchBar';
 
-import { LoginPage } from '../components';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
 import { PrivateDriverRoute } from '../components';
@@ -41,10 +40,10 @@ class App extends React.Component {
             }
             <Router history={history}>
               <div>
-                <PrivateOwnerRoute exact path="/owner" component={OwnerHomePage} />
-                <PrivateDriverRoute exact path="/driver" component={DriverHomePage} />
+                <PrivateOwnerRoute exact path="/owner/home" component={OwnerHomePage} />
+                <PrivateDriverRoute exact path="/driver/home" component={DriverHomePage} />
                 <Route path="/" component={OwnerRegisterPage} />
-                <Route path="/login" component={OwnerRegisterPage} />
+        
               </div>
             </Router>
           </div>
