@@ -9,6 +9,7 @@ const ownerRoute = require("./routes/api/owners");
 const parkingSpotRoute = require("./routes/api/parkingSpots");
 const driverRoute = require("./routes/api/drivers");
 const vehicleRoute = require("./routes/api/vehicles");
+const testRoute = require("./routes/api/test");
 const PORT = 3001;
 
 const app = express();
@@ -43,6 +44,7 @@ app.use("/owner", ownerRoute);
 app.use("/parkingSpot", parkingSpotRoute);
 app.use("/driver", driverRoute);
 app.use("/vehicle", vehicleRoute);
+app.use("/test", testRoute);
 
 // Start the server
 app.listen(PORT, function() {

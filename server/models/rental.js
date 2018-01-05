@@ -11,6 +11,23 @@ const RentalSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    rentalStart: {
+        type: Date
+    },
+    rentalEnd: {
+        type: Date
+    },
+    status: {
+        type: String,
+        match: [/\b(new|pending|active|canceled|closed)\b/, "Please enter a valid status"],
+        default: "new"
+    },
+    rate: {
+        type: Number
+    },
+    total: {
+        type: Number
+    },
     ownerID: {
         type: Schema.Types.ObjectId,
         ref: "Owner"
@@ -26,11 +43,7 @@ const RentalSchema = new Schema({
     vehicleID: {
         type: Schema.Types.ObjectId,
         ref: "Vehicle"
-    },
-    status: {
-        type: String,
-        match: [/.+\@.+\..+/, "Please enter a valid status"],
-    },
+    }
 });
 
 // This creates our model from the above schema, using mongoose's model method

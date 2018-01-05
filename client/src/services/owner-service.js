@@ -43,51 +43,29 @@ function logout() {
 }
 
 function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: ownerAuthHeader()
-    };
-
-    return axios.get('/owner', requestOptions).then(handleResponse);
+    return axios.get('/owner').then(handleResponse);
 }
 
 function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: ownerAuthHeader()
-    };
-
-    return axios.get('/owners/' + id, requestOptions).then(handleResponse);
+    return axios.get('/owner/' + id).then(handleResponse);
 }
 
 function register(owner) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(owner)
-    };
 
+<<<<<<< HEAD
     return axios.post('/owner', owner).then(handleResponse);
+=======
+    return axios.post('/owner').then(handleResponse);
+>>>>>>> server-work
 }
 
 function update(owner) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...ownerAuthHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(owner)
-    };
-
-    return axios.get('/owners/' + owner.id, requestOptions).then(handleResponse);;
+    return axios.put('/owner/' + owner.id).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: ownerAuthHeader()
-    };
-
-    return axios.delete('/owners/' + id, requestOptions).then(handleResponse);;
+    return axios.delete('/owner/' + id).then(handleResponse);;
 }
 
 function handleResponse(response) {
