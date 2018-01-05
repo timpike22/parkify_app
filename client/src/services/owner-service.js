@@ -67,7 +67,7 @@ function register(owner) {
         body: JSON.stringify(owner)
     };
 
-    return axios.post('/owner', requestOptions).then(handleResponse);
+    return axios.post('/owner', owner).then(handleResponse);
 }
 
 function update(owner) {

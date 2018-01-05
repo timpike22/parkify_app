@@ -46,7 +46,7 @@ function register(owner) {
             .then(
             owner => {
                 dispatch(success());
-                history.push('/owner');
+                history.push('/');
                 dispatch(alertActions.success('Registration successful'));
             },
             error => {
