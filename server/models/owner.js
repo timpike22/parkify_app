@@ -42,20 +42,16 @@ const OwnerSchema = new Schema({
     required: "Last Name is Required"
   },
   street: {
-    type: String,
-    required: true
+    type: String
   },
   city: {
-    type: String,
-    required: true
+    type: String
   },
   state: {
-    type: String,
-    required: true
+    type: String
   },
   zip: {
-    type: Number,
-    required: true
+    type: Number
   },
   lat: {
     type: Number
