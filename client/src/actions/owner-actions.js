@@ -46,12 +46,12 @@ function register(owner) {
             .then(
             owner => {
                 dispatch(success());
-                history.push('/login');
+                history.push('/owner');
                 dispatch(alertActions.success('Registration successful'));
             },
             error => {
                 dispatch(failure(error));
-                dispatch(alertActions.error(error));
+                dispatch(alertActions.error(error.message));
             }
             );
     };

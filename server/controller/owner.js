@@ -14,7 +14,7 @@ module.exports = {
         //then instantiate latitude and longitude properties of the temp object
         let tempObject = req.body;
         const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
-        address.replace(/ /g,'');
+       // address.replace(/ /g,'');
         tempObject.lat = 0;
         tempObject.lng = 0;
 
@@ -56,7 +56,7 @@ module.exports = {
         //then instantiate latitude and longitude properties of the temp object
         let tempObject = req.body;
         const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
-        address.replace(/ /g,'');
+        //address.replace(/ /g,'');
         tempObject.lat = 0;
         tempObject.lng = 0;
 

@@ -1,4 +1,5 @@
 import { ownerAuthHeader } from '../helpers';
+import axios from 'axios';
 
 export const ownerService = {
     login,
@@ -47,7 +48,7 @@ function getAll() {
         headers: ownerAuthHeader()
     };
 
-    return fetch('/owners', requestOptions).then(handleResponse);
+    return axios.get('/owner', requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -56,7 +57,7 @@ function getById(id) {
         headers: ownerAuthHeader()
     };
 
-    return fetch('/owners/' + id, requestOptions).then(handleResponse);
+    return axios.get('/owners/' + id, requestOptions).then(handleResponse);
 }
 
 function register(owner) {
@@ -66,7 +67,7 @@ function register(owner) {
         body: JSON.stringify(owner)
     };
 
-    return fetch('/owners/register', requestOptions).then(handleResponse);
+    return axios.post('/owner', requestOptions).then(handleResponse);
 }
 
 function update(owner) {
@@ -76,7 +77,7 @@ function update(owner) {
         body: JSON.stringify(owner)
     };
 
-    return fetch('/owners/' + owner.id, requestOptions).then(handleResponse);;
+    return axios.get('/owners/' + owner.id, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -86,7 +87,7 @@ function _delete(id) {
         headers: ownerAuthHeader()
     };
 
-    return fetch('/owners/' + id, requestOptions).then(handleResponse);;
+    return axios.delete('/owners/' + id, requestOptions).then(handleResponse);;
 }
 
 function handleResponse(response) {
