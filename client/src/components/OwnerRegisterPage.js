@@ -95,9 +95,9 @@ class OwnerRegisterPage extends React.Component {
                     
                     
                     <div className="form-group">
-                        <button className="btn btn-primary">Register</button>
+                        <Link to="/owner/home" className="btn btn-primary">Register</Link>
 
-                        <Link to="/OwnerHomePage" className="btn btn-link">Cancel</Link>
+                        <Link to="/OwnerRegisterPage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
             </div>
