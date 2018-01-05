@@ -1,12 +1,12 @@
 import { ownerConstants } from '../constants';
 
-export function registration(state = {}, action) {
+export function ownerRegistration(state = {}, action) {
     switch (action.type) {
-        case userConstants.REGISTER_REQUEST:
+        case ownerConstants.REGISTER_REQUEST:
             return { registering: true };
-        case userConstants.REGISTER_SUCCESS:
+        case ownerConstants.REGISTER_SUCCESS:
             return {};
-        case userConstants.REGISTER_FAILURE:
+        case ownerConstants.REGISTER_FAILURE:
             return {};
         default:
             return state

@@ -1,12 +1,12 @@
 import { driverConstants } from '../constants';
 
-export function registration(state = {}, action) {
+export function driverRegistration(state = {}, action) {
     switch (action.type) {
-        case userConstants.REGISTER_REQUEST:
+        case driverConstants.REGISTER_REQUEST:
             return { registering: true };
-        case userConstants.REGISTER_SUCCESS:
+        case driverConstants.REGISTER_SUCCESS:
             return {};
-        case userConstants.REGISTER_FAILURE:
+        case driverConstants.REGISTER_FAILURE:
             return {};
         default:
             return state

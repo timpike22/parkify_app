@@ -3,7 +3,7 @@ import { ownerConstants } from '../constants';
 let owner = JSON.parse(localStorage.getItem('owner'));
 const initialState = owner ? { loggedIn: true, owner } : {};
 
-export function authentication(state = initialState, action) {
+export function ownerAuthentication(state = initialState, action) {
     switch (action.type) {
         case ownerConstants.LOGIN_REQUEST:
             return {

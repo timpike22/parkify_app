@@ -1,17 +1,24 @@
 import { combineReducers } from 'redux';
-import { registration } from './registration-reducer';
-import { users } from './users-reducer';
+import { driverRegistration } from './driver-registration-reducer';
+import { ownerRegistration } from './owner-registration-reducer';
 import { alert } from './alert-reducer';
 import ParkingSpaceReducer from './reducerParkingSpace';
 import ActiveParkingSpace from './reducerActiveParkingSpace';
-import { authentication } from './auth-reducer';
+import { driverAuthentication } from './driver-auth-reducer';
+import { ownerAuthentication } from './owner-auth-reducer';
+import { drivers } from './drivers-reducer';
+import { owners } from './owners-reducer';
+
 
 const rootReducer = combineReducers({
     parkingSpace: ParkingSpaceReducer,
     activeParkingSpace: ActiveParkingSpace,
-    authentication,
-    registration,
-    users,
+    ownerAuthentication,
+    driverAuthentication,
+    driverRegistration,
+    ownerRegistration,
+    drivers,
+    owners,
     alert
 });
 

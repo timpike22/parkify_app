@@ -1,4 +1,5 @@
 import { driverAuthHeader } from '../helpers';
+import axios from 'axios';
 
 export const driverService = {
     login,
@@ -47,7 +48,7 @@ function getAll() {
         headers: driverAuthHeader()
     };
 
-    return fetch('/drivers', requestOptions).then(handleResponse);
+    return axios.get('/drivers', requestOptions).then(handleResponse);
 }
 
 function getById(id) {
@@ -56,7 +57,7 @@ function getById(id) {
         headers: driverAuthHeader()
     };
 
-    return fetch('/drivers/' + id, requestOptions).then(handleResponse);
+    return axios.get('/drivers/' + id, requestOptions).then(handleResponse);
 }
 
 function register(driver) {
@@ -66,7 +67,7 @@ function register(driver) {
         body: JSON.stringify(driver)
     };
 
-    return fetch('/drivers/register', requestOptions).then(handleResponse);
+    return axios.post('/drivers/register', requestOptions).then(handleResponse);
 }
 
 function update(driver) {
@@ -76,7 +77,7 @@ function update(driver) {
         body: JSON.stringify(driver)
     };
 
-    return fetch('/drivers/' + driver.id, requestOptions).then(handleResponse);;
+    return axios.post('/drivers/' + driver.id, requestOptions).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -86,7 +87,7 @@ function _delete(id) {
         headers: driverAuthHeader()
     };
 
-    return fetch('/drivers/' + id, requestOptions).then(handleResponse);;
+    return axios.delete('/drivers/' + id, requestOptions).then(handleResponse);;
 }
 
 function handleResponse(response) {

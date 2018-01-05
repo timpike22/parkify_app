@@ -1,9 +1,5 @@
-export * from './PrivateRoute';
 export * from './DriverRegisterPage';
 export * from './OwnerRegisterPage';
-export * from './RegisterPage';
-export * from './HomePage';
-export { default } from './UserType';
 export * from './PrivateDriverRoute';
 export * from './DriverLoginPage';
 export * from './DriverHomePage';

@@ -11,7 +11,7 @@ import { history } from '../helpers';
 import { alertActions } from '../actions';
 import { PrivateDriverRoute } from '../components';
 import { PrivateOwnerRoute } from '../components';
-import { HomePage } from '../components';
+
 import { DriverHomePage } from '../components';
 import { OwnerHomePage } from '../components';
 import { OwnerRegisterPage } from '../components';
