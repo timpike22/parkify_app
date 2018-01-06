@@ -45,7 +45,8 @@ function register(owner) {
         ownerService.register(owner)
             .then(
             owner => {
-                dispatch(success());
+                dispatch(success(owner));
+                window.localStorage.setItem('owner', JSON.stringify(owner));
                 history.push('/');
                 dispatch(alertActions.success('Registration successful'));
             },

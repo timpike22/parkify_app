@@ -18,7 +18,7 @@ function login(email, password) {
         body: JSON.stringify({ email, password })
     };
 
-    return axios.post('/owners/authenticate', requestOptions)
+    return axios.post('/owners/authenticate', JSON.stringify({ email, password }))
         .then(response => {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
@@ -64,12 +64,9 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
-    if (!response.ok) {
-        console.log('response');
-        console.log(response);
+    if (!response.statusText === "ok") {
         return Promise.reject(response.statusText);
     }
-    console.log('response');
-    return response.json();
+    return response;
     
 }

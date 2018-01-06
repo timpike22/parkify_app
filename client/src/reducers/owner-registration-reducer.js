@@ -5,7 +5,11 @@ export function ownerRegistration(state = {}, action) {
         case ownerConstants.REGISTER_REQUEST:
             return { registering: true };
         case ownerConstants.REGISTER_SUCCESS:
-            return {};
+            console.log(action);
+            return {
+                ...state,
+                data: action.owner
+            };
         case ownerConstants.REGISTER_FAILURE:
             return {};
         default:

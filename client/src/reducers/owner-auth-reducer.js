@@ -12,8 +12,15 @@ export function ownerAuthentication(state = initialState, action) {
             };
         case ownerConstants.LOGIN_SUCCESS:
             return {
+                ...state,
                 loggedIn: true,
                 owner: action.owner
+            };
+        case ownerConstants.REGISTER_SUCCESS:
+            console.log(action);
+            return {
+                ...state,
+                data: action.owner
             };
         case ownerConstants.LOGIN_FAILURE:
             return {};

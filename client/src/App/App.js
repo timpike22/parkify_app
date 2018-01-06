@@ -9,7 +9,7 @@ import { DriverLoginPage } from '../DriverLogin';
 import { OwnerLoginPage } from '../OwnerLogin';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
-import { PrivateDriverRoute } from '../components';
+//import { PrivateDriverRoute } from '../components';
 import { PrivateOwnerRoute } from '../components';
 import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { alert } = this.props;
+    const { alert, ownerAuthentication } = this.props;
     return (
       <div className="jumbotron">
         <div className="container">
@@ -40,8 +40,8 @@ class App extends React.Component {
             }
             <Router history={history}>
               <div>
-                <PrivateOwnerRoute exact path="/owner" component={OwnerHomePage} />
-                <PrivateDriverRoute exact path="/driver" component={DriverHomePage} />
+                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
+                {/*<PrivateDriverRoute exact path="/driver" component={DriverHomePage} />*/}
                 <Route exact path="/register/owner" component={OwnerRegisterPage} />
                 <Route exact path="/register/driver" component={DriverRegisterPage} />
                 <Route exact path="/" component={OwnerLoginPage} />
@@ -55,9 +55,10 @@ class App extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const { alert } = state;
+  console.log(state);
+  const { alert, ownerAuthentication } = state;
   return {
-    alert
+    alert, ownerAuthentication
   };
 }
 
