@@ -1,4 +1,2 @@
-export * from './PrivateRoute';
-export * from './LoginPage';
-export * from './RegisterPage';
-export * from './HomePage';
+export * from './PrivateDriverRoute';
+export * from './PrivateOwnerRoute';

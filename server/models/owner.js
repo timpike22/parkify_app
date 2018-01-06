@@ -14,7 +14,7 @@ const OwnerSchema = new Schema({
     unique: true,
     trim: true,
     match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
-    required: "Email is Required",
+    required: "Email is Required"
   },
   // `password` must be of type String
   // `password` will trim leading and trailing whitespace before it's saved
@@ -58,7 +58,7 @@ const OwnerSchema = new Schema({
     index: '2d'
   },
   phoneNumber: {
-    type: String,
+    type: String
     /*validate: {
       validator: function(v) {
         return /\d{3}-\d{3}-\d{4}/.test(v);
@@ -76,7 +76,13 @@ const OwnerSchema = new Schema({
   ownerCreated: {
     type: Date,
     default: Date.now
-  }
+  },
+  rentals: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Rental"
+    }
+  ]
 });
 
 // This creates our model from the above schema, using mongoose's model method

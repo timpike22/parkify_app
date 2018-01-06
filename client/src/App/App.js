@@ -1,18 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../style/App.css';
 import ParkingSpace_List from '../containers/ParkingSpaceList';
 import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
 import SearchBar from '../containers/SearchBar';
-
-import { LoginPage } from '../components';
+import { DriverLoginPage } from '../DriverLogin';
+import { OwnerLoginPage } from '../OwnerLogin';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
-import { PrivateRoute } from '../components';
-import { HomePage } from '../components';
-
-import { RegisterPage } from '../components';
+import { PrivateDriverRoute } from '../components';
+import { PrivateOwnerRoute } from '../components';
+import { DriverHomePage } from '../DriverHome';
+import { OwnerHomePage } from '../OwnerHome';
+import { OwnerRegisterPage } from '../OwnerLogin';
+import { DriverRegisterPage } from '../DriverLogin';
 
 
 
@@ -38,9 +40,11 @@ class App extends React.Component {
             }
             <Router history={history}>
               <div>
-                <PrivateRoute exact path="/" component={HomePage} />
-                <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
+                <PrivateOwnerRoute exact path="/owner" component={OwnerHomePage} />
+                <PrivateDriverRoute exact path="/driver" component={DriverHomePage} />
+                <Route exact path="/register/owner" component={OwnerRegisterPage} />
+                <Route exact path="/register/driver" component={DriverRegisterPage} />
+                <Route exact path="/" component={OwnerLoginPage} />
               </div>
             </Router>
           </div>

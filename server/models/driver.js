@@ -14,7 +14,7 @@ const DriverSchema = new Schema({
     unique: true,
     trim: true,
     match: [/.+\@.+\..+/, "Please enter a valid e-mail address"],
-    required: "Password is Required"
+    required: "Email is Required"
   },
   // `password` must be of type String
   // `password` will trim leading and trailing whitespace before it's saved
@@ -76,7 +76,13 @@ const DriverSchema = new Schema({
   driverCreated: {
     type: Date,
     default: Date.now
-  }
+  },
+  rentals: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "Rental"
+    }
+  ]
 });
 
 // This creates our model from the above schema, using mongoose's model method
