@@ -55,7 +55,7 @@ function register(owner) {
 }
 
 function update(owner) {
-    return axios.put('/owner/' + owner.id).then(handleResponse);;
+    return axios.put('/owner/' + owner.id).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -65,8 +65,11 @@ function _delete(id) {
 
 function handleResponse(response) {
     if (!response.ok) {
+        console.log('response');
+        console.log(response);
         return Promise.reject(response.statusText);
     }
-
+    console.log('response');
     return response.json();
+    
 }
