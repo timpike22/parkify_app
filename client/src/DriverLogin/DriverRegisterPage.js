@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { driverActions } from '../actions';
 
+import axios from 'axios';
+
 
 class DriverRegisterPage extends React.Component {
     constructor(props) {
@@ -21,6 +23,12 @@ class DriverRegisterPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        axios.get('/driver')
+            .then(res => console.log(res))
+            .catch(e => console.log(e));
     }
 
     setdriver(event) {
@@ -54,7 +62,7 @@ class DriverRegisterPage extends React.Component {
         const { driver, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
-                <h2>Register for Parkify</h2>
+                <h2>REGISTER TO PARKify</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !driver.firstName ? ' has-error' : '')}>
                         <label htmlFor="firstName">First Name</label>
@@ -84,10 +92,12 @@ class DriverRegisterPage extends React.Component {
                             <div className="help-block">Password is required</div>
                         }
                     </div>
+
+
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
 
-                        <Link to="/login" className="btn btn-link">Cancel</Link>
+                        <Link to="/DriverHomePage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
             </div>
@@ -96,11 +106,11 @@ class DriverRegisterPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { registering } = state.registration;
+    const { registering } = state.driverRegistration;
     return {
         registering
     };
 }
 
-const connectedDriverRegisterPage = connect(mapStateToProps)(DriverRegisterPage);
-export { connectedDriverRegisterPage as DriverRegisterPage };
+const connecteddriverRegisterPage = connect(mapStateToProps)(DriverRegisterPage);
+export { connecteddriverRegisterPage as DriverRegisterPage };

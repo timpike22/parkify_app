@@ -5,17 +5,16 @@ import '../style/App.css';
 import ParkingSpace_List from '../containers/ParkingSpaceList';
 import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
 import SearchBar from '../containers/SearchBar';
-
-import { LoginPage } from '../components';
+import { DriverLoginPage } from '../DriverLogin';
+import { OwnerLoginPage } from '../OwnerLogin';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
 import { PrivateDriverRoute } from '../components';
 import { PrivateOwnerRoute } from '../components';
-
-import { DriverHomePage } from '../components';
-import { OwnerHomePage } from '../components';
-import { OwnerRegisterPage } from '../components';
-import { DriverRegisterPage } from '../components';
+import { DriverHomePage } from '../DriverHome';
+import { OwnerHomePage } from '../OwnerHome';
+import { OwnerRegisterPage } from '../OwnerLogin';
+import { DriverRegisterPage } from '../DriverLogin';
 
 
 
@@ -43,8 +42,9 @@ class App extends React.Component {
               <div>
                 <PrivateOwnerRoute exact path="/owner" component={OwnerHomePage} />
                 <PrivateDriverRoute exact path="/driver" component={DriverHomePage} />
-                <Route path="/" component={OwnerRegisterPage} />
-                <Route path="/login" component={OwnerRegisterPage} />
+                <Route exact path="/register/owner" component={OwnerRegisterPage} />
+                <Route exact path="/register/driver" component={DriverRegisterPage} />
+                <Route exact path="/" component={OwnerLoginPage} />
               </div>
             </Router>
           </div>

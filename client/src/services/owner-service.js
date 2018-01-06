@@ -18,7 +18,7 @@ function login(email, password) {
         body: JSON.stringify({ email, password })
     };
 
-    return fetch('/owners/authenticate', requestOptions)
+    return axios.post('/owners/authenticate', requestOptions)
         .then(response => {
             if (!response.ok) {
                 return Promise.reject(response.statusText);

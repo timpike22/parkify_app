@@ -23,7 +23,7 @@ function login(email, password) {
             },
             error => {
                 dispatch(failure(error));
-                dispatch(alertActions.error(error));
+                dispatch(alertActions.error(error.messege));
             }
             );
     };
@@ -46,7 +46,7 @@ function register(owner) {
             .then(
             owner => {
                 dispatch(success());
-                history.push('/owner');
+                history.push('/');
                 dispatch(alertActions.success('Registration successful'));
             },
             error => {

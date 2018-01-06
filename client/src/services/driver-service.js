@@ -18,7 +18,7 @@ function login(email, password) {
         body: JSON.stringify({ email, password })
     };
 
-    return fetch('/drivers/authenticate', requestOptions)
+    return axios.post('/drivers/authenticate', requestOptions)
         .then(response => {
             if (!response.ok) {
                 return Promise.reject(response.statusText);
@@ -43,51 +43,24 @@ function logout() {
 }
 
 function getAll() {
-    const requestOptions = {
-        method: 'GET',
-        headers: driverAuthHeader()
-    };
-
-    return axios.get('/drivers', requestOptions).then(handleResponse);
+    return axios.get('/driver').then(handleResponse);
 }
 
 function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: driverAuthHeader()
-    };
-
-    return axios.get('/drivers/' + id, requestOptions).then(handleResponse);
+    return axios.get('/driver/' + id).then(handleResponse);
 }
 
 function register(driver) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(driver)
-    };
-
-    return axios.post('/drivers/register', requestOptions).then(handleResponse);
+    return axios.post('/driver', driver).then(handleResponse);
 }
 
 function update(driver) {
-    const requestOptions = {
-        method: 'PUT',
-        headers: { ...driverAuthHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(driver)
-    };
-
-    return axios.post('/drivers/' + driver.id, requestOptions).then(handleResponse);;
+    return axios.put('/driver/' + driver.id).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    const requestOptions = {
-        method: 'DELETE',
-        headers: driverAuthHeader()
-    };
-
-    return axios.delete('/drivers/' + id, requestOptions).then(handleResponse);;
+    return axios.delete('/driver/' + id).then(handleResponse);;
 }
 
 function handleResponse(response) {

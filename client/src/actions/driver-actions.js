@@ -23,7 +23,7 @@ function login(email, password) {
             },
             error => {
                 dispatch(failure(error));
-                dispatch(alertActions.error(error));
+                dispatch(alertActions.error(error.message));
             }
             );
     };
@@ -46,12 +46,12 @@ function register(driver) {
             .then(
             driver => {
                 dispatch(success());
-                history.push('/login');
+                history.push('/');
                 dispatch(alertActions.success('Registration successful'));
             },
             error => {
                 dispatch(failure(error));
-                dispatch(alertActions.error(error));
+                dispatch(alertActions.error(error.message));
             }
             );
     };

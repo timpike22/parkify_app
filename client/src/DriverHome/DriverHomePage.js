@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 
 import { driverActions } from '../actions';
 
-
 class DriverHomePage extends React.Component {
     componentDidMount() {
         this.props.dispatch(driverActions.getAll());
     }
 
-    handleDeleteDriver(id) {
+    handleDeletedriver(id) {
         return (e) => this.props.dispatch(driverActions.delete(id));
     }
 
@@ -32,7 +31,7 @@ class DriverHomePage extends React.Component {
                                 {
                                     driver.deleting ? <em> - Deleting...</em>
                                         : driver.deleteError ? <span className="text-danger"> - ERROR: {driver.deleteError}</span>
-                                            : <span> - <a onClick={this.handleDeleteDriver(driver.id)}>Delete</a></span>
+                                            : <span> - <a onClick={this.handleDeletedriver(driver.id)}>Delete</a></span>
                                 }
                             </li>
                         )}
@@ -55,5 +54,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedDriverHomePage = connect(mapStateToProps)(DriverHomePage);
-export { connectedDriverHomePage as DriverHomePage };
+const connecteddriverHomePage = connect(mapStateToProps)(DriverHomePage);
+export { connecteddriverHomePage as DriverHomePage };

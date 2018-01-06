@@ -5,6 +5,6 @@ export const PrivateDriverRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
         localStorage.getItem('driver')
             ? <Component {...props} />
-            : <Redirect to={{ pathname: '/login', state: { from: props.location } }} />
+            : <Redirect to={{ pathname: '/driver', state: { from: props.location } }} />
     )} />
 )

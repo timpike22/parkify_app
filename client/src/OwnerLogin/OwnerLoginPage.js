@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
+import { ownerAuthentication } from '../reducers'
 import { ownerActions } from '../actions';
 
 class OwnerLoginPage extends React.Component {
@@ -70,7 +70,7 @@ class OwnerLoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
+    const { loggingIn } = state.ownerAuthentication;
     return {
         loggingIn
     };
