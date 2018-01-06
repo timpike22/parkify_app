@@ -29,11 +29,9 @@ const ParkingSpotSchema = new Schema({
         type: Number,
         required: true
     },
-    lat: {
-        type: Number
-    },
-    lng: {
-        type: Number
+    loc: {
+        type: [Number], //[<longitude>, <latitude>]
+        index: '2d'
     },
   // `date` must be of type Date. The default value is the current date
   parkingSpotCreated: {

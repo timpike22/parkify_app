@@ -53,11 +53,9 @@ const OwnerSchema = new Schema({
   zip: {
     type: Number
   },
-  lat: {
-    type: Number
-  },
-  lng: {
-    type: Number
+  loc: {
+    type: [Number], //[<longitude>, <latitude>]
+    index: '2d'
   },
   phoneNumber: {
     type: String

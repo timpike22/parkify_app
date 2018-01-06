@@ -34,7 +34,7 @@ const DriverSchema = new Schema({
   firstName: {
     type: String,
     trim: true,
-    required: "First Name is Required",
+    required: "First Name is Required"
   },
   lastName: {
     type: String,
@@ -53,11 +53,9 @@ const DriverSchema = new Schema({
   zip: {
       type: Number
   },
-  lat: {
-    type: Number
-  },
-  lng: {
-      type: Number
+  loc: {
+    type: [Number], //[<longitude>, <latitude>]
+    index: '2d'
   },
   phoneNumber: {
     type: String,
