@@ -5,7 +5,11 @@ export function driverRegistration(state = {}, action) {
         case driverConstants.REGISTER_REQUEST:
             return { registering: true };
         case driverConstants.REGISTER_SUCCESS:
-            return {};
+            console.log(action);
+            return {
+                ...state,
+                data: action.driver
+            };
         case driverConstants.REGISTER_FAILURE:
             return {};
         default:

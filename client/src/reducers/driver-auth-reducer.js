@@ -1,6 +1,6 @@
 import { driverConstants } from '../constants';
 
-let driver = JSON.parse(localStorage.getItem('driver'));
+let driver = localStorage.getItem("driver");
 const initialState = driver ? { loggedIn: true, driver } : {};
 
 export function driverAuthentication(state = initialState, action) {
@@ -12,8 +12,15 @@ export function driverAuthentication(state = initialState, action) {
             };
         case driverConstants.LOGIN_SUCCESS:
             return {
+                ...state,
                 loggedIn: true,
                 driver: action.driver
+            };
+        case driverConstants.REGISTER_SUCCESS:
+            console.log(action);
+            return {
+                ...state,
+                data: action.driver
             };
         case driverConstants.LOGIN_FAILURE:
             return {};

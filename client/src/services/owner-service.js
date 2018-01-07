@@ -65,7 +65,7 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
-    if (!response.statusText === "ok") {
+    if (!response.statusText === "OK") {
         return Promise.reject(response.statusText);
     }
     return response;

@@ -38,6 +38,20 @@ function logout() {
     return { type: driverConstants.LOGOUT };
 }
 
+export const registerSuccess = (driver) => {
+    return {
+        type: driverConstants.REGISTER_SUCCESS,
+        driver
+    }
+}
+
+export const registerFailure = (driver) => {
+    return {
+        type: driverConstants.REGISTER_FAILURE,
+        driver
+    }
+}
+
 function register(driver) {
     return dispatch => {
         dispatch(request(driver));

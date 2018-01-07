@@ -63,10 +63,11 @@ function _delete(id) {
     return axios.delete('/driver/' + id).then(handleResponse);;
 }
 
+
 function handleResponse(response) {
-    if (!response.ok) {
+    if (!response.statusText === "OK") {
         return Promise.reject(response.statusText);
     }
+    return response;
 
-    return response.json();
 }

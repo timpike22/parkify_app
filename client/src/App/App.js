@@ -9,7 +9,7 @@ import { DriverLoginPage } from '../DriverLogin';
 import { OwnerLoginPage } from '../OwnerLogin';
 import { history } from '../helpers';
 import { alertActions } from '../actions';
-//import { PrivateDriverRoute } from '../components';
+import { PrivateDriverRoute } from '../components';
 import { PrivateOwnerRoute } from '../components';
 import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { alert, ownerAuthentication } = this.props;
+    const { alert, ownerAuthentication, driverAuthentication } = this.props;
     return (
       <div className="jumbotron">
         <div className="container">
@@ -41,10 +41,11 @@ class App extends React.Component {
             <Router history={history}>
               <div>
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
-                {/*<PrivateDriverRoute exact path="/driver" component={DriverHomePage} />*/}
+                <PrivateOwnerRoute exact ownerAuth={driverAuthentication} path="/owner" component={DriverHomePage} />
                 <Route exact path="/register/owner" component={OwnerRegisterPage} />
                 <Route exact path="/register/driver" component={DriverRegisterPage} />
                 <Route exact path="/" component={OwnerLoginPage} />
+                <Route exact path="/" component={DriverLoginPage} />
               </div>
             </Router>
           </div>

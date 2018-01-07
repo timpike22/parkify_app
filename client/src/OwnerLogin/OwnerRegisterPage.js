@@ -60,7 +60,7 @@ class OwnerRegisterPage extends React.Component {
                 if (response.statusText === "OK") {
                     dispatch(registerSuccess(response.data))
                     localStorage.setItem("owner", response.data);
-                    history.push('/ownerHomePage')
+                    history.push('/OwnerHomePage')
                 } else {
                     dispatch(registerFailure())
                     this.setState({owner: {
@@ -72,7 +72,6 @@ class OwnerRegisterPage extends React.Component {
                     submitted: false
                 })
             }
-
         })
           //  dispatch(ownerActions.register(owner));
         }

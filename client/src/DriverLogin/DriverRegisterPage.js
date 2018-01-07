@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { driverActions } from '../actions';
+import { driverService } from '../services'
+import { registerSuccess, registerFailure } from '../actions';
+import { history } from '../helpers';
 
 import axios from 'axios';
+
 
 
 class DriverRegisterPage extends React.Component {
@@ -53,7 +55,27 @@ class DriverRegisterPage extends React.Component {
         const { driver } = this.state;
         const { dispatch } = this.props;
         if (driver.firstName && driver.lastName && driver.email && driver.password) {
-            dispatch(driverActions.register(driver));
+            driverService.register (driver).then(response => {
+                console.log(response);
+                console.log(response.statusText);
+                if (response.statusText === "OK") {
+                    dispatch(registerSuccess(response.data))
+                    localStorage.setItem("driver", response.data)
+                    history.push('/DriverHomePage')
+                } else {
+                    dispatch(registerFailure())
+                    this.setState({
+                        driver: {
+                            firstName: '',
+                            lastName: '',
+                            email: '',
+                            password: ''
+                        },
+                        submitted: false
+                    })
+            //dispatch(driverActions.register(driver));
+                }
+            })
         }
     }
 
