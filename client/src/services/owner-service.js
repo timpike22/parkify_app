@@ -51,6 +51,7 @@ function getById(id) {
 }
 
 function register(owner) {
+    console.log(owner)
     return axios.post('/owner', owner).then(handleResponse);
 }
 

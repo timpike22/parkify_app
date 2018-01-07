@@ -1,6 +1,6 @@
 import { ownerConstants } from '../constants';
 
-let owner = JSON.parse(localStorage.getItem('owner'));
+let owner = localStorage.getItem("owner");
 const initialState = owner ? { loggedIn: true, owner } : {};
 
 export function ownerAuthentication(state = initialState, action) {

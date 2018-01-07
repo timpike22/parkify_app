@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { ownerActions } from '../actions';
+import { ownerService} from '../services'
+import { registerSuccess, registerFailure } from '../actions';
+import { history } from '../helpers';
 
 import axios from 'axios';
 
@@ -53,7 +54,27 @@ class OwnerRegisterPage extends React.Component {
         const { owner } = this.state;
         const { dispatch } = this.props;
         if (owner.firstName && owner.lastName && owner.email && owner.password) {
-            dispatch(ownerActions.register(owner));
+            ownerService.register (owner).then(response => {
+                console.log(response);
+                console.log(response.statusText);
+                if (response.statusText === "OK") {
+                    dispatch(registerSuccess(response.data))
+                    localStorage.setItem("owner", response.data);
+                    history.push('/ownerHomePage')
+                } else {
+                    dispatch(registerFailure())
+                    this.setState({owner: {
+                        firstName: '',
+                        lastName: '',
+                        email: '',
+                        password: ''
+                        },
+                    submitted: false
+                })
+            }
+
+        })
+          //  dispatch(ownerActions.register(owner));
         }
     }
 

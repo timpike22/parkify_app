@@ -36,6 +36,19 @@ function login(email, password) {
 function logout() {
     ownerService.logout();
     return { type: ownerConstants.LOGOUT };
+} 
+export const registerSuccess = (owner) => {
+    return{
+        type: ownerConstants.REGISTER_SUCCESS, 
+        owner
+    }
+}
+
+export const registerFailure = (owner) => {
+    return {
+        type: ownerConstants.REGISTER_FAILURE,
+        owner
+    }
 }
 
 function register(owner) {
@@ -97,4 +110,4 @@ function _delete(id) {
     function request(id) { return { type: ownerConstants.DELETE_REQUEST, id } }
     function success(id) { return { type: ownerConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: ownerConstants.DELETE_FAILURE, id, error } }
-}
+} 
