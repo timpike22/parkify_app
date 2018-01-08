@@ -41,11 +41,11 @@ class App extends React.Component {
             <Router history={history}>
               <div>
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
-                <PrivateOwnerRoute exact ownerAuth={driverAuthentication} path="/owner" component={DriverHomePage} />
+                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
                 <Route exact path="/register/owner" component={OwnerRegisterPage} />
                 <Route exact path="/register/driver" component={DriverRegisterPage} />
-                <Route exact path="/" component={OwnerLoginPage} />
-                <Route exact path="/" component={DriverLoginPage} />
+                <Route exact path="/login/owner" component={OwnerLoginPage} />
+                <Route exact path="/login/driver" component={DriverLoginPage} />
               </div>
             </Router>
           </div>
@@ -57,9 +57,9 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
   console.log(state);
-  const { alert, ownerAuthentication } = state;
+  const { alert, driverAuthentication, ownerAuthentication } = state;
   return {
-    alert, ownerAuthentication
+    alert, driverAuthentication, ownerAuthentication
   };
 }
 

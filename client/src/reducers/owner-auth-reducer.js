@@ -7,14 +7,15 @@ export function ownerAuthentication(state = initialState, action) {
     switch (action.type) {
         case ownerConstants.LOGIN_REQUEST:
             return {
+                ...state,
                 loggingIn: true,
-                owner: action.owner
+                data: action.owner
             };
         case ownerConstants.LOGIN_SUCCESS:
             return {
                 ...state,
                 loggedIn: true,
-                owner: action.owner
+                data: action.owner
             };
         case ownerConstants.REGISTER_SUCCESS:
             console.log(action);

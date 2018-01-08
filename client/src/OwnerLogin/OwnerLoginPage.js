@@ -2,7 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ownerAuthentication } from '../reducers'
-import { ownerActions } from '../actions';
+import { ownerService } from '../services'
+import { ownerActions } from '../actions'
+import { loginSuccess, loginFailure } from '../actions/owner-actions';
+import { history } from '../helpers';
+import axios from 'axios';
 
 class OwnerLoginPage extends React.Component {
     constructor(props) {
@@ -21,6 +25,12 @@ class OwnerLoginPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        axios.get('/owner/authenticate')
+            .then(res => console.log(res))
+            .catch(e => console.log(e));
+    }
+
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
@@ -34,7 +44,24 @@ class OwnerLoginPage extends React.Component {
         const { email, password } = this.state;
         const { dispatch } = this.props;
         if (email && password) {
-            dispatch(ownerActions.login(email, password));
+            ownerService.login({email,password}).then(response => {
+                console.log(response);
+                console.log(response.statusText);
+                if (response.statusText === "OK") {
+                    dispatch(loginSuccess(response.data))
+                    localStorage.setItem("owner", response.data);
+                    history.push('/OwnerHomePage')
+                } else {
+                    dispatch(loginFailure())
+                    this.setState({
+                            email: '',
+                            password: '',
+                            submitted: false
+                        
+                    })
+                }
+            })
+           // dispatch(ownerActions.login(email, password));
         }
     }
 
@@ -61,7 +88,7 @@ class OwnerLoginPage extends React.Component {
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary">Login</button>
-                        <Link to="/register" className="btn btn-link">Register</Link>
+                        <Link to="/register/owner" className="btn btn-link">Register</Link>
                     </div>
                 </form>
             </div>

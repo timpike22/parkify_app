@@ -13,30 +13,49 @@ export const ownerActions = {
 
 function login(email, password) {
     return dispatch => {
-        dispatch(request({ email }));
+        dispatch(loginRequest({ email }));
 
         ownerService.login(email, password)
             .then(
             owner => {
-                dispatch(success(owner));
-                history.push('/');
+                dispatch(loginSuccess(owner));
+                history.push('/login/owner');
             },
             error => {
-                dispatch(failure(error));
+                dispatch(loginFailure(error));
                 dispatch(alertActions.error(error.messege));
             }
             );
     };
 
-    function request(owner) { return { type: ownerConstants.LOGIN_REQUEST, owner } }
-    function success(owner) { return { type: ownerConstants.LOGIN_SUCCESS, owner } }
-    function failure(error) { return { type: ownerConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {
     ownerService.logout();
     return { type: ownerConstants.LOGOUT };
 } 
+
+export const loginSuccess = (owner) => {
+    return {
+        type: ownerConstants.LOGIN_SUCCESS,
+        owner
+    }
+}
+
+export const loginRequest = (owner) => {
+    return {
+        type: ownerConstants.LOGIN_REQUEST,
+        owner
+    }
+}
+
+export const loginFailure = (owner) => {
+    return {
+        type: ownerConstants.LOGIN_FAILURE,
+        owner
+    }
+}
+
 export const registerSuccess = (owner) => {
     return{
         type: ownerConstants.REGISTER_SUCCESS, 

@@ -10,7 +10,7 @@ export const ownerService = {
     update,
     delete: _delete
 };
-
+/*
 function login(email, password) {
     const requestOptions = {
         method: 'POST',
@@ -35,6 +35,28 @@ function login(email, password) {
 
             return owner;
         });
+}
+
+function login(email, password) {
+    return axios.post('/owner/authenticate', JSON.stringify({ email, password}))
+        .then(response => {
+            if (!response.statusText === "OK") {
+                return Promise.reject(response.statusText);
+            }
+                return response.json();
+        })
+        .then(owner => {
+            if (owner && owner.token) {
+                localStorage.setItem('owner', JSON.stringify(owner));
+            }
+                return owner
+        });
+}
+*/
+
+function login(email, password) {
+    console.log(email,password)
+    return axios.post('/owner/authenticate', JSON.stringify({ email, password})).then(handleResponse);
 }
 
 function logout() {

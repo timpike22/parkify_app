@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { driverService } from '../services'
-import { registerSuccess, registerFailure } from '../actions';
+import { registerSuccess, registerFailure } from '../actions/driver-actions';
 import { history } from '../helpers';
 
 import axios from 'axios';
@@ -119,7 +119,7 @@ class DriverRegisterPage extends React.Component {
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
 
-                        <Link to="/DriverHomePage" className="btn btn-link">Cancel</Link>
+                        <Link to="/DriverLoginPage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
             </div>
@@ -134,5 +134,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connecteddriverRegisterPage = connect(mapStateToProps)(DriverRegisterPage);
-export { connecteddriverRegisterPage as DriverRegisterPage };
+const connectedDriverRegisterPage = connect(mapStateToProps)(DriverRegisterPage);
+export { connectedDriverRegisterPage as DriverRegisterPage };

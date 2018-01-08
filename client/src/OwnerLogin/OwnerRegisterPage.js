@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ownerService} from '../services'
-import { registerSuccess, registerFailure } from '../actions';
+import { registerSuccess, registerFailure } from '../actions/owner-actions';
 import { history } from '../helpers';
 
 import axios from 'axios';
@@ -117,7 +117,7 @@ class OwnerRegisterPage extends React.Component {
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
 
-                        <Link to="/OwnerHomePage" className="btn btn-link">Cancel</Link>
+                        <Link to="/OwnerLoginPage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
             </div>
