@@ -41,10 +41,10 @@ class OwnerLoginPage extends React.Component {
         e.preventDefault();
 
         this.setState({ submitted: true });
-        const { email, password } = this.state;
+        const { owner } = this.state;
         const { dispatch } = this.props;
         if (email && password) {
-            ownerService.login({email,password}).then(response => {
+            ownerService.login(owner).then(response => {
                 console.log(response);
                 console.log(response.statusText);
                 if (response.statusText === "OK") {

@@ -54,9 +54,8 @@ function login(email, password) {
 }
 */
 
-function login(email, password) {
-    console.log(email,password)
-    return axios.post('/owner/authenticate', JSON.stringify({ email, password})).then(handleResponse);
+function login(owner) {
+    return axios.post('/owner/login', owner).then(handleResponse);
 }
 
 function logout() {
