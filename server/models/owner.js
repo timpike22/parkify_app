@@ -85,6 +85,22 @@ const OwnerSchema = new Schema({
   ]
 });
 
+//hashing a password before saving it to the database
+OwnerSchema.pre('save', (next) => {
+  let owner = this;
+  bcrypt.hash(owner.password, 10, (err, hash) => {
+    if (err) {
+      return next(err);
+    }
+    owner.password = hash;
+    next();
+  })
+});
+
+OwnerSchema.methods.validPassword = ( password, callback ) => {
+  bcrypt.compare(password, this.password, callback);
+};
+
 // This creates our model from the above schema, using mongoose's model method
 const Owner = mongoose.model("Owner", OwnerSchema);
 

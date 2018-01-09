@@ -85,6 +85,22 @@ const DriverSchema = new Schema({
   ]
 });
 
+//hashing a password before saving it to the database
+DriverSchema.pre('save', (next) => {
+  let driver = this;
+  bcrypt.hash(driver.password, 10, (err, hash) => {
+    if (err) {
+      return next(err);
+    }
+    driver.password = hash;
+    next();
+  })
+});
+
+DriverSchema.methods.validPassword = ( password, callback ) => {
+  bcrypt.compare(password, this.password, callback);
+};
+
 // This creates our model from the above schema, using mongoose's model method
 const Driver = mongoose.model("Driver", DriverSchema);
 
