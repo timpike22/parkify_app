@@ -55,7 +55,7 @@ function login(email, password) {
 */
 
 function login(owner) {
-    return axios.post('/check-owner-auth', owner).then(handleResponse);
+    return axios.post('/owner/owner/', owner).then(handleResponse);
 }
 
 function logout() {

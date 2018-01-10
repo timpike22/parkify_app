@@ -5,6 +5,50 @@ const mongoose = require("mongoose");
 const axios = require("axios");
 const Driver = require("../models/driver.js");
 const Vehicle = require("../models/vehicle.js");
+const ParkingSpot = require("../models/parkingSpot.js");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const parser = require('body-parser');
+const urlencodedParser = parser.urlencoded({extended : false});
+
+passport.use('driver', 
+    new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password',
+        passReqToCallback: true
+    },   
+    (req, email, password, done) => {
+        console.log(req.session);
+        Driver.findOne({ email: email }, (err, driver) => {
+            if (err) { return done(err); }
+            if (!driver) {
+            return done(null, false, { message: 'Incorrect email.' });
+            }
+            driver.validPassword(password, (err, res) => {
+                if (err) {
+                    console.log(err);
+                    done(err);
+                }
+                if (res) {
+                    done(null, driver);
+                } else {
+                    done();
+                }
+            }); 
+        });
+    }
+));
+
+const ensureAuthenticated = (req, res, next) => {
+    console.log(req.isAuthenticated());
+    if (req.isAuthenticated()) {
+        return next();
+    } else {
+        return res.status(401).json({
+            error: 'Driver not authenticated'
+        })
+    }
+};
 
 module.exports = {
     create: function(req, res) {
@@ -135,5 +179,33 @@ module.exports = {
                         }
                     });
             });
+    },
+    login: function(req, res) {
+        passport.authenticate("driver", (err, user, info) => {
+            if (err) { return next(err); } 
+            if (!user) {
+                console.log("Cannot find driver");
+                return res.sendStatus(401);
+            }
+            req.logIn(user, err => {
+                if (err) { return next(err); }
+                console.log("driver logged in");
+                return res.status(200).json({driverID: user._id});
+            });
+        })(req, res, next);
+    },
+    logout: function(req, res) {
+        // clears session from node but not from db
+        req.logout(); 
+        //removes session from db
+        req.session.destroy(err => {
+            res.sendStatus(200);
+        });
+    },
+    authenticate: ensureAuthenticated, function(req, res) {
+        res.status(200).json({
+            status: 'Driver Login successful!'
+        });
     }
 };
+

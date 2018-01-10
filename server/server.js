@@ -4,6 +4,10 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const path = require("path");
 const axios = require("axios");
+const session = require('express-session');
+const passport = require("passport");
+const flash = require("connect-flash");
+const MongoStore = require("connect-mongo")(session);
 const routes = require("./routes");
 const ownerRoute = require("./routes/api/owners");
 const parkingSpotRoute = require("./routes/api/parkingSpots");
@@ -39,6 +43,32 @@ mongoose.connect(
     useMongoClient: true
   }
 );
+var db = mongoose.connection;
+
+//use sessions for tracking logins
+app.use("/owner", session({
+  name: "owner",
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: db
+  })
+}));
+
+/*app.use("/driver", session({
+  name: "driver",
+  secret: 'work hard',
+  resave: true,
+  saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: db
+  })
+}));*/
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 
 app.use("/owner", ownerRoute);
 app.use("/parkingSpot", parkingSpotRoute);

@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
 
 // Save a reference to the Schema constructor
 const Schema = mongoose.Schema;
@@ -66,6 +67,10 @@ const OwnerSchema = new Schema({
       message: '{VALUE} is not a valid phone number!'
     },*/
   },
+  type: {
+    type: String,
+    default: "owner"
+  },
   parkingSpots: [
     {
       type: Schema.Types.ObjectId,
@@ -85,8 +90,9 @@ const OwnerSchema = new Schema({
   ]
 });
 
+//commenting out because of error
 //hashing a password before saving it to the database
-OwnerSchema.pre('save', (next) => {
+/*OwnerSchema.pre('save', (next) => {
   let owner = this;
   bcrypt.hash(owner.password, 10, (err, hash) => {
     if (err) {
@@ -99,7 +105,7 @@ OwnerSchema.pre('save', (next) => {
 
 OwnerSchema.methods.validPassword = ( password, callback ) => {
   bcrypt.compare(password, this.password, callback);
-};
+};*/
 
 // This creates our model from the above schema, using mongoose's model method
 const Owner = mongoose.model("Owner", OwnerSchema);

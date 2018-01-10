@@ -3,11 +3,11 @@ var route = express.Router();
 var logger = require("morgan");
 var mongoose = require("mongoose");
 var axios = require("axios");
-var Rental = require("../Models/rental.js");
-var Owner = require("../Models/owner.js");
-var ParkingSpot = require("../Models/parkingSpot.js");
-var Vehicle = require("../Models/vehicle.js");
-var Driver = require("../Models/driver.js");
+var Rental = require("../models/rental.js");
+var Owner = require("../models/owner.js");
+var ParkingSpot = require("../models/parkingSpot.js");
+var Vehicle = require("../models/vehicle.js");
+var Driver = require("../models/driver.js");
 const _this = this;
 
 module.exports = {

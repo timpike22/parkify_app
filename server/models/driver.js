@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrypt = require('bcrypt');
 
 // Save a reference to the Schema constructor
 const Schema = mongoose.Schema;
@@ -65,6 +66,10 @@ const DriverSchema = new Schema({
       },
       message: '{VALUE} is not a valid phone number!'
     },*/
+  },
+  type: {
+    type: String,
+    default: "driver"
   },
   vehicles: [
     {

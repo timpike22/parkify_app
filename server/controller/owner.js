@@ -4,7 +4,73 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const axios = require("axios");
 const Owner = require("../models/owner.js");
+const Driver = require("../models/driver.js");
 const ParkingSpot = require("../models/parkingSpot.js");
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
+const parser = require('body-parser');
+const urlencodedParser = parser.urlencoded({extended : false});
+
+passport.use('owner', 
+    new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'password',
+        passReToCallback: true
+    },  
+    (req, email, password, done) => {
+        Owner
+            .findOne({email: email}, (err, owner) => {
+                if (err) { return done(err); }
+                if (!owner) {
+                    return done(null, false, { message: 'Incorrect email.' });
+                }
+                owner
+                    .validPassword(password, (err, res) => {
+                        if (err) {
+                            console.log(err);
+                            done(err);
+                        }
+                        if (res) {
+                            done(null, owner);
+                        } else {
+                            done();
+                        }
+                    }); 
+            });
+    }
+));
+
+passport.serializeUser((owner, done) => {
+    console.log("Serialize User Owner");
+    console.log(owner);
+    done(null, owner);
+});
+
+passport.deserializeUser((user, done) => {
+    if (user.type === "owner") {
+        console.log("deserialize user owner - owner");
+        Owner
+            .findById(user._id, (err, owner) => {
+                done(err, owner);
+            });
+    } else {
+        console.log("deserialize user owner - driver");
+        Driver
+            .findById(user._id, (err, driver) => {
+                done(err, driver);
+            });
+    }
+});
+
+const ensureAuthenticated = (req, res, next) => {
+    if  (req.isAuthenticated()) {
+        return next();
+    } else {
+        return res.status(401).json({
+            error: 'Owner not authenticated'
+        });
+    }
+}
 
 module.exports = {
     create: function(req, res) {
@@ -13,6 +79,10 @@ module.exports = {
         //then remove whitespace from address variable
         //then instantiate latitude and longitude properties of the temp object
         let tempObject = req.body;
+        tempObject.street = "123 w main st";
+        tempObject.city = "phoenix";
+        tempObject.state = "AZ";
+        tempObject.zip = "85027";
         const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
        // address.replace(/ /g,'');
         tempObject.lat = 0;
@@ -21,6 +91,8 @@ module.exports = {
         //use axios to pass address into google to return coordinates 
         //then add those coordinates to the temp object
         //then add that temp object into the db as an owner
+        console.log("req.body");
+        console.log(req.body);
         axios
             .get("https://maps.google.com/maps/api/geocode/json?key=AIzaSyDu3uARDgsUWZTKOQ_CItX7_grlIU11Ieo&address=" + address)
             .then(response => {
@@ -29,9 +101,16 @@ module.exports = {
                 tempObject.lng = coords.lng;
             })
             .then(() => {
+                console.log("then");
+                console.log("tempObject");
+                console.log(tempObject);
                 Owner
                     .create(tempObject)
-                    .then(dbOwner => res.json(dbOwner))
+                    .then(dbOwner => {
+                        console.log("dbOwner");
+                        console.log(dbOwner);
+                        res.json(dbOwner)
+                    })
                     .catch(err => res.json(err));
             });
     },
@@ -138,5 +217,34 @@ module.exports = {
                         }
                     });
             });  
+    },
+    login: function(req, res) {
+        passport
+            .authenticate("owner", (err, user, info) => {
+                if (err) { return next(err); } 
+                if (!user) {
+                    console.log("Cannot find owner");
+                    return res.sendStatus(401);
+                }
+                req.logIn(user, err => {
+                    console.log(user);
+                    if (err) { return next(err); }
+                    console.log("Owner logged in");
+                    return res.status(200).json({ownerID: user._id});
+                });
+            })(req, res, next);
+    },
+    logout: function(req, res) {
+        //clears session from node but not from db
+        req.logout(); 
+        //removes session from db
+        req.session.destroy(err => {
+            res.sendStatus(200);
+        });
+    },
+    authenticate: ensureAuthenticated, function(req, res) {
+        res.status(200).json({
+            status: 'Owner Login successful!'
+        });
     }
 };
