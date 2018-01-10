@@ -55,12 +55,17 @@ function login(email, password) {
 */
 
 function login(owner) {
-    return axios.post('/owner/owner/', owner).then(handleResponse);
+    return axios.post('/owner/loginout/', owner).then(handleResponse);
 }
 
 function logout() {
     // remove owner from local storage to log owner out
     localStorage.removeItem('owner');
+    return axios.get('/owner/loginout/').then(handleResponse);
+}
+
+function authenticate() {
+    return axios.get('/owner/authenticate/').then(handleResponse);
 }
 
 function getAll() {
@@ -68,7 +73,7 @@ function getAll() {
 }
 
 function getById(id) {
-    return axios.get('/owner/' + id).then(handleResponse);
+    return axios.get('/owner/id/' + id).then(handleResponse);
 }
 
 function register(owner) {
@@ -77,12 +82,12 @@ function register(owner) {
 }
 
 function update(owner) {
-    return axios.put('/owner/' + owner.id).then(handleResponse);
+    return axios.put('/owner/id/' + owner.id).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    return axios.delete('/owner/' + id).then(handleResponse);;
+    return axios.delete('/owner/id/' + id).then(handleResponse);;
 }
 
 function handleResponse(response) {

@@ -18,13 +18,12 @@ passport.use('driver',
         passReqToCallback: true
     },   
     (req, email, password, done) => {
-        console.log(req.session);
         Driver.findOne({ email: email }, (err, driver) => {
             if (err) { return done(err); }
             if (!driver) {
             return done(null, false, { message: 'Incorrect email.' });
             }
-            driver.validPassword(password, (err, res) => {
+            driver.validPassword(password, driver, (err, res) => {
                 if (err) {
                     console.log(err);
                     done(err);
@@ -38,17 +37,6 @@ passport.use('driver',
         });
     }
 ));
-
-const ensureAuthenticated = (req, res, next) => {
-    console.log(req.isAuthenticated());
-    if (req.isAuthenticated()) {
-        return next();
-    } else {
-        return res.status(401).json({
-            error: 'Driver not authenticated'
-        })
-    }
-};
 
 module.exports = {
     create: function(req, res) {
@@ -180,7 +168,7 @@ module.exports = {
                     });
             });
     },
-    login: function(req, res) {
+    login: function(req, res, next) {
         passport.authenticate("driver", (err, user, info) => {
             if (err) { return next(err); } 
             if (!user) {
@@ -202,10 +190,16 @@ module.exports = {
             res.sendStatus(200);
         });
     },
-    authenticate: ensureAuthenticated, function(req, res) {
-        res.status(200).json({
-            status: 'Driver Login successful!'
-        });
+    authenticate: function(req, res) {
+        if  (req.isAuthenticated()) {
+            return res.status(200).json({
+                status: 'Driver authorized'
+            });
+        } else {
+            return res.status(401).json({
+                error: 'Driver unauthorized'
+            });
+        }
     }
 };
 

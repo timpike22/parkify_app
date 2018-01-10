@@ -101,11 +101,16 @@ const OwnerSchema = new Schema({
     owner.password = hash;
     next();
   })
-});
+});*/
 
-OwnerSchema.methods.validPassword = ( password, callback ) => {
-  bcrypt.compare(password, this.password, callback);
-};*/
+OwnerSchema.methods.validPassword = ( password, owner, callback ) => {
+  /*bcrypt.compare(password, this.password, callback);*/
+  if(password === owner.password) {
+    return (callback(null, true));
+  } else {
+    return (callback(null, false));
+  }
+};
 
 // This creates our model from the above schema, using mongoose's model method
 const Owner = mongoose.model("Owner", OwnerSchema);

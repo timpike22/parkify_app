@@ -15,34 +15,32 @@ passport.use('owner',
     new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password',
-        passReToCallback: true
-    },  
-    (req, email, password, done) => {
-        Owner
-            .findOne({email: email}, (err, owner) => {
-                if (err) { return done(err); }
-                if (!owner) {
-                    return done(null, false, { message: 'Incorrect email.' });
-                }
-                owner
-                    .validPassword(password, (err, res) => {
-                        if (err) {
-                            console.log(err);
-                            done(err);
-                        }
-                        if (res) {
-                            done(null, owner);
-                        } else {
-                            done();
-                        }
-                    }); 
-            });
+        passReqToCallback: true
+    },  (req, email, password, done) => {
+            Owner
+                .findOne({email: email}, (err, owner) => {
+                    if (err) { return done(err); }
+                    if (!owner) {
+                        return done(null, false, { message: 'Incorrect email.' });
+                    }
+                    owner
+                        .validPassword(password, owner, (err, res) => {
+                            if (err) {
+                                console.log(err);
+                                done(err);
+                            }
+                            if (res) {
+                                done(null, owner);
+                            } else {
+                                done();
+                            }
+                        }); 
+                });
     }
 ));
 
 passport.serializeUser((owner, done) => {
     console.log("Serialize User Owner");
-    console.log(owner);
     done(null, owner);
 });
 
@@ -61,16 +59,6 @@ passport.deserializeUser((user, done) => {
             });
     }
 });
-
-const ensureAuthenticated = (req, res, next) => {
-    if  (req.isAuthenticated()) {
-        return next();
-    } else {
-        return res.status(401).json({
-            error: 'Owner not authenticated'
-        });
-    }
-}
 
 module.exports = {
     create: function(req, res) {
@@ -91,8 +79,6 @@ module.exports = {
         //use axios to pass address into google to return coordinates 
         //then add those coordinates to the temp object
         //then add that temp object into the db as an owner
-        console.log("req.body");
-        console.log(req.body);
         axios
             .get("https://maps.google.com/maps/api/geocode/json?key=AIzaSyDu3uARDgsUWZTKOQ_CItX7_grlIU11Ieo&address=" + address)
             .then(response => {
@@ -101,14 +87,9 @@ module.exports = {
                 tempObject.lng = coords.lng;
             })
             .then(() => {
-                console.log("then");
-                console.log("tempObject");
-                console.log(tempObject);
                 Owner
                     .create(tempObject)
                     .then(dbOwner => {
-                        console.log("dbOwner");
-                        console.log(dbOwner);
                         res.json(dbOwner)
                     })
                     .catch(err => res.json(err));
@@ -218,7 +199,7 @@ module.exports = {
                     });
             });  
     },
-    login: function(req, res) {
+    login: function(req, res, next) {
         passport
             .authenticate("owner", (err, user, info) => {
                 if (err) { return next(err); } 
@@ -227,7 +208,6 @@ module.exports = {
                     return res.sendStatus(401);
                 }
                 req.logIn(user, err => {
-                    console.log(user);
                     if (err) { return next(err); }
                     console.log("Owner logged in");
                     return res.status(200).json({ownerID: user._id});
@@ -242,9 +222,15 @@ module.exports = {
             res.sendStatus(200);
         });
     },
-    authenticate: ensureAuthenticated, function(req, res) {
-        res.status(200).json({
-            status: 'Owner Login successful!'
-        });
+    authenticate: function(req, res) {
+        if  (req.isAuthenticated()) {
+            return res.status(200).json({
+                status: 'Owner authorized'
+            });
+        } else {
+            return res.status(401).json({
+                error: 'Owner unauthorized'
+            });
+        }
     }
 };

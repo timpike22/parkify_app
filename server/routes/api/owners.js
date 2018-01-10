@@ -7,16 +7,16 @@ router.route("/")
     .post(ownersController.create);
 
 //Matches with "/api/owners/:id"
-router.route("/:id")
+router.route("/id/:id")
     .get(ownersController.findById)
     .put(ownersController.update)
     .delete(ownersController.remove);
 
-router.route("/owner/") 
+router.route("/loginout/") 
     .post(ownersController.login)
     .get(ownersController.logout);
 
-router.route("/owner/authenticate") 
+router.route("/authenticate") 
     .get(ownersController.authenticate);
 
 module.exports = router;

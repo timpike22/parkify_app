@@ -46,7 +46,7 @@ mongoose.connect(
 var db = mongoose.connection;
 
 //use sessions for tracking logins
-app.use("/owner", session({
+app.use("/owner/", session({
   name: "owner",
   secret: 'work hard',
   resave: true,
@@ -56,7 +56,7 @@ app.use("/owner", session({
   })
 }));
 
-/*app.use("/driver", session({
+app.use("/driver/", session({
   name: "driver",
   secret: 'work hard',
   resave: true,
@@ -64,7 +64,7 @@ app.use("/owner", session({
   store: new MongoStore({
     mongooseConnection: db
   })
-}));*/
+}));
 
 app.use(passport.initialize());
 app.use(passport.session());
