@@ -48,14 +48,14 @@ class OwnerLoginPage extends React.Component {
             password: password 
         } 
         if (email && password) {
-            ownerService.login(owner).then(response => {
+          ownerService.login(owner).then(response => {
                 console.log(response);
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
                     dispatch(loginSuccess(response.data))
                     localStorage.setItem("owner", response.data);
-                        //dispatch(loginSuccess(owner))
-                    //localStorage.setItem("owner", owner);
+                     //   dispatch(loginSuccess(owner))
+                   // localStorage.setItem("owner", owner);
                     history.push('/OwnerHomePage')
                 } else {
                     dispatch(loginFailure())
