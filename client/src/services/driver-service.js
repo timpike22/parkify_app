@@ -11,35 +11,18 @@ export const driverService = {
     delete: _delete
 };
 
-function login(email, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    };
-
-    return axios.post('/drivers/authenticate', requestOptions)
-        .then(response => {
-            if (!response.ok) {
-                return Promise.reject(response.statusText);
-            }
-
-            return response.json();
-        })
-        .then(driver => {
-            // login successful if there's a jwt token in the response
-            if (driver && driver.token) {
-                // store driver details and jwt token in local storage to keep driver logged in between page refreshes
-                localStorage.setItem('driver', JSON.stringify(driver));
-            }
-
-            return driver;
-        });
+function login(driver) {
+    return axios.post('/driver/loginout/', driver).then(handleResponse);    
 }
 
 function logout() {
     // remove driver from local storage to log driver out
     localStorage.removeItem('driver');
+    return axios.get('/driver/loginout/').then(handleResponse);
+}
+
+function authenticate() {
+    return axios.get('/driver/authenticate/').then(handleResponse);
 }
 
 function getAll() {
@@ -47,7 +30,7 @@ function getAll() {
 }
 
 function getById(id) {
-    return axios.get('/driver/' + id).then(handleResponse);
+    return axios.get('/driver/id/' + id).then(handleResponse);
 }
 
 function register(driver) {
@@ -55,19 +38,17 @@ function register(driver) {
 }
 
 function update(driver) {
-    return axios.put('/driver/' + driver.id).then(handleResponse);;
+    return axios.put('/driver/id/' + driver.id).then(handleResponse);;
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    return axios.delete('/driver/' + id).then(handleResponse);;
+    return axios.delete('/driver/id/' + id).then(handleResponse);;
 }
-
 
 function handleResponse(response) {
     if (!response.statusText === "OK") {
         return Promise.reject(response.statusText);
     }
     return response;
-
 }
