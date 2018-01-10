@@ -18,6 +18,7 @@ import { DriverRegisterPage } from '../DriverLogin';
 
 
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -46,6 +47,7 @@ class App extends React.Component {
                 <Route exact path="/register/driver" component={DriverRegisterPage} />
                 <Route exact path="/login/owner" component={OwnerLoginPage} />
                 <Route exact path="/login/driver" component={DriverLoginPage} />
+                {/*<Route exact path="/" component={} />*/}
               </div>
             </Router>
           </div>
