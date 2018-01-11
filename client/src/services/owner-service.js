@@ -77,7 +77,6 @@ function getById(id) {
 }
 
 function register(owner) {
-    console.log(owner)
     return axios.post('/owner', owner).then(handleResponse);
 }
 
@@ -95,5 +94,4 @@ function handleResponse(response) {
         return Promise.reject(response.statusText);
     }
     return response;
-    
 }

@@ -40,33 +40,10 @@ passport.use('driver',
 
 module.exports = {
     create: function(req, res) {
-        //create temporary object of request body
-        //then create address variable from temp objects address
-        //then remove whitespace from address variable
-        //then instantiate latitude and longitude properties of the temp object
-        let tempObject = req.body;
-        const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
-        address.replace(/ /g,'');
-        tempObject.lat = 0;
-        tempObject.lng = 0;
-
-        //use axios to pass address into google to return coordinates 
-        //then add those coordinates to the temp object
-        //then add that temp object into the db as a driver
-        axios
-            .get("https://maps.google.com/maps/api/geocode/json?key=AIzaSyDu3uARDgsUWZTKOQ_CItX7_grlIU11Ieo&address=" + address)
-            .then(response => {
-                const coords = response.data.results[0].geometry.location;
-                tempObject.lat = coords.lat;
-                tempObject.lng = coords.lng;
-            })
-            .then(() => {
-            // Create a new user using req.body
-                Driver
-                    .create(tempObject)
-                    .then(dbDriver => res.json(dbDriver))
-                    .catch(err => res.json(err));
-            });
+        Driver
+            .create(req.body)
+            .then(dbDriver => res.json(dbDriver))
+            .catch(err => res.json(err));
     },
     findAll: function(req, res) {
         Driver
@@ -89,7 +66,7 @@ module.exports = {
         //then instantiate latitude and longitude properties of the temp object
         let tempObject = req.body;
         const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
-        address.replace(/ /g,'');
+        address.replace(/\s/g);
         tempObject.lat = 0;
         tempObject.lng = 0;
 
