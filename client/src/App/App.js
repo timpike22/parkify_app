@@ -13,8 +13,7 @@ import { PrivateDriverRoute } from '../components';
 import { PrivateOwnerRoute } from '../components';
 import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
-import { OwnerRegisterPage } from '../OwnerLogin';
-import { DriverRegisterPage } from '../DriverLogin';
+import { RegisterPage } from '../OwnerLogin';
 import Navbar  from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
@@ -47,13 +46,12 @@ class App extends React.Component {
             <div>
             <Navbar />
             <Wrapper>
-                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
-                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
-                <Route exact path="/" component={OwnerRegisterPage} />
-                <Route exact path="/register/driver" component={DriverRegisterPage} />
+                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
+                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
+                <Route exact path="/" component={RegisterPage} />
                 <Route exact path="/login/owner" component={OwnerLoginPage} />
                 <Route exact path="/login/driver" component={DriverLoginPage} />
-                {/*<Route exact path="/" component={} />*/}
+
             </Wrapper>
                
               </div>

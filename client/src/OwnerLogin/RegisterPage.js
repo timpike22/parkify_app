@@ -10,7 +10,7 @@ import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
 
 
-class OwnerRegisterPage extends React.Component {
+class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
 
@@ -154,9 +154,9 @@ class OwnerRegisterPage extends React.Component {
                     </div>
                     <div className="form-check form-check-inline user-option">
                             <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" />
-                                <label className="form-check-label" for="ownerRadio">Owner</label>
+                                <label className="form-check-label" htmlFor="ownerRadio">Owner</label>
                             <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
-                                    <label className="form-check-label" for="driverRadio">Driver</label>
+                                    <label className="form-check-label" htmlFor="driverRadio">Driver</label>
                     </div>
                     
                     
@@ -181,5 +181,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedRegisterPage = connect(mapStateToProps)(OwnerRegisterPage);
-export { connectedRegisterPage as OwnerRegisterPage };
+const connectedRegisterPage = connect(mapStateToProps)(RegisterPage);
+export { connectedRegisterPage as RegisterPage };

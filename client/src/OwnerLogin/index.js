@@ -1,2 +1,2 @@
 export * from './OwnerLoginPage';
-export * from './OwnerRegisterPage';
+export * from './RegisterPage';
