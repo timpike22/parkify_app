@@ -4,31 +4,14 @@ import { alertActions } from './';
 import { history } from '../helpers';
 
 export const ownerActions = {
-    login,
+
     logout,
-    register,
+
     getAll,
     delete: _delete
 };
 
-function login(email, password) {
-    return dispatch => {
-        dispatch(loginRequest({ email }));
 
-        ownerService.login(email, password)
-            .then(
-            owner => {
-                dispatch(loginSuccess(owner));
-                history.push('/login/owner');
-            },
-            error => {
-                dispatch(loginFailure(error));
-                dispatch(alertActions.error(error.messege));
-            }
-            );
-    };
-
-}
 
 function logout() {
     ownerService.logout();
@@ -70,29 +53,6 @@ export const registerFailure = (owner) => {
     }
 }
 
-function register(owner) {
-    return dispatch => {
-        dispatch(request(owner));
-
-        ownerService.register(owner)
-            .then(
-            owner => {
-                dispatch(success(owner));
-                window.localStorage.setItem('owner', JSON.stringify(owner));
-                history.push('/');
-                dispatch(alertActions.success('Registration successful'));
-            },
-            error => {
-                dispatch(failure(error));
-                dispatch(alertActions.error(error.message));
-            }
-            );
-    };
-
-    function request(owner) { return { type: ownerConstants.REGISTER_REQUEST, owner } }
-    function success(owner) { return { type: ownerConstants.REGISTER_SUCCESS, owner } }
-    function failure(error) { return { type: ownerConstants.REGISTER_FAILURE, error } }
-}
 
 function getAll() {
     return dispatch => {

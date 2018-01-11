@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { driverRegistration } from './driver-registration-reducer';
-import { ownerRegistration } from './owner-registration-reducer';
+import { Registration } from './registration-reducer';
 import { alert } from './alert-reducer';
 import ParkingSpaceReducer from './reducerParkingSpace';
 import ActiveParkingSpace from './reducerActiveParkingSpace';
@@ -16,7 +16,7 @@ const rootReducer = combineReducers({
     ownerAuthentication,
     driverAuthentication,
     driverRegistration,
-    ownerRegistration,
+    Registration,
     drivers,
     owners,
     alert

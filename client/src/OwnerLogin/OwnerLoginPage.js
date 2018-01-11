@@ -56,9 +56,9 @@ class OwnerLoginPage extends React.Component {
                     localStorage.setItem("owner", response.data);
                      //   dispatch(loginSuccess(owner))
                    // localStorage.setItem("owner", owner);
-                    history.push('/OwnerHomePage')
+                    history.push('/ownerHomePage')
                 } else {
-                    dispatch(loginFailure("Please enter "))
+                    dispatch(loginFailure())
                     this.setState({
                             email: '',
                             password: '',

@@ -17,7 +17,7 @@ import { OwnerRegisterPage } from '../OwnerLogin';
 import { DriverRegisterPage } from '../DriverLogin';
 import Navbar  from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
-//import Footer from '../components/Footer';
+import Footer from '../components/Footer';
 
 
 
@@ -47,15 +47,15 @@ class App extends React.Component {
             <div>
             <Navbar />
             <Wrapper>
-                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
+                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
-                <Route exact path="/register/owner" component={OwnerRegisterPage} />
+                <Route exact path="/" component={OwnerRegisterPage} />
                 <Route exact path="/register/driver" component={DriverRegisterPage} />
                 <Route exact path="/login/owner" component={OwnerLoginPage} />
                 <Route exact path="/login/driver" component={DriverLoginPage} />
                 {/*<Route exact path="/" component={} />*/}
             </Wrapper>
-           {/*} <Footer />    */} 
+               
               </div>
             </Router>
           </div>

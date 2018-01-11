@@ -161,7 +161,7 @@ class OwnerRegisterPage extends React.Component {
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
 
-                        <Link to="/OwnerLoginPage" className="btn btn-link">Cancel</Link>
+                        <Link to="/LoginPage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
             </Jumbotron>    
@@ -171,11 +171,11 @@ class OwnerRegisterPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { registering } = state.ownerRegistration;
+    const { registering } = state.Registration;
     return {
         registering
     };
 }
 
-const connectedOwnerRegisterPage = connect(mapStateToProps)(OwnerRegisterPage);
-export { connectedOwnerRegisterPage as OwnerRegisterPage };
+const connectedRegisterPage = connect(mapStateToProps)(OwnerRegisterPage);
+export { connectedRegisterPage as OwnerRegisterPage };
