@@ -77,6 +77,6 @@ app.use("/vehicle", vehicleRoute);
 app.use("/rental", rentalRoute);
 
 // Start the server
-app.listen(process.env.PORT || PORT, function() {
-  console.log("App running on port " + PORT + "!");  
-});
+//app.listen(process.env.PORT || PORT, function() {
+//  console.log("App running on port " + PORT + "!");  
+//});
