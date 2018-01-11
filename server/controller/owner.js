@@ -62,38 +62,12 @@ passport.deserializeUser((user, done) => {
 
 module.exports = {
     create: function(req, res) {
-        //create temporary object of request body
-        //then create address variable from temp objects address
-        //then remove whitespace from address variable
-        //then instantiate latitude and longitude properties of the temp object
-        let tempObject = req.body;
-        tempObject.street = "123 w main st";
-        tempObject.city = "phoenix";
-        tempObject.state = "AZ";
-        tempObject.zip = "85027";
-        const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
-       // address.replace(/ /g,'');
-        tempObject.lat = 0;
-        tempObject.lng = 0;
-
-        //use axios to pass address into google to return coordinates 
-        //then add those coordinates to the temp object
-        //then add that temp object into the db as an owner
-        axios
-            .get("https://maps.google.com/maps/api/geocode/json?key=AIzaSyDu3uARDgsUWZTKOQ_CItX7_grlIU11Ieo&address=" + address)
-            .then(response => {
-                const coords = response.data.results[0].geometry.location;
-                tempObject.lat = coords.lat;
-                tempObject.lng = coords.lng;
-            })
-            .then(() => {
-                Owner
-                    .create(tempObject)
-                    .then(dbOwner => {
-                        res.json(dbOwner)
-                    })
-                    .catch(err => res.json(err));
-            });
+        Owner
+        .create(req.body)
+        .then(dbOwner => {
+            res.json(dbOwner)
+        })
+        .catch(err => res.json(err));
     },
     findAll: function(req, res) {
         Owner
@@ -116,7 +90,7 @@ module.exports = {
         //then instantiate latitude and longitude properties of the temp object
         let tempObject = req.body;
         const address = tempObject.street + tempObject.city + tempObject.state + tempObject.zip;
-        //address.replace(/ /g,'');
+        address.replace(/\s/g);
         tempObject.lat = 0;
         tempObject.lng = 0;
 
