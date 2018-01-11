@@ -58,7 +58,7 @@ class OwnerLoginPage extends React.Component {
                    // localStorage.setItem("owner", owner);
                     history.push('/OwnerHomePage')
                 } else {
-                    dispatch(loginFailure())
+                    dispatch(loginFailure("Please enter "))
                     this.setState({
                             email: '',
                             password: '',
@@ -75,7 +75,7 @@ class OwnerLoginPage extends React.Component {
         const { loggingIn } = this.props;
         const { email, password, submitted } = this.state;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div>
                 <h2>Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>

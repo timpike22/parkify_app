@@ -1,0 +1,88 @@
+.btn-primary {
+    background-color: #3333FF;
+    border-color: #3333FF;
+}
+
+.btn-light {
+    background-color: #84A5FD;
+    border-color: #84A5FD;
+}
+
+.p {
+    color: yellow !important;
+}
+
+#brand {
+    font-family: 'Segoe Script', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FFCC00;
+    font-size: 150%;
+}
+
+.login-btn,
+.navInputEmail,
+.navInputPassword,
+.userSelection {
+    margin-left: 5px;
+}
+
+#splash-signin {
+    padding-top: 5%;
+    ;
+}
+
+@media (max-width: 856px) {
+    .navbar-brand {
+        margin: auto;
+        text-align: center;
+    }
+    .nav-input-btn {
+        margin: auto;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-btn,
+    .navInputEmail,
+    .navInputPassword,
+    .userSelection {
+        margin-top: 5px;
+    }
+    .navbar-form {
+        margin: auto;
+    }
+}
+
+@media (max-width: 636px) {
+    .navInputEmail,
+    .navInputPassword,
+    .userSelection {
+        margin: auto;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 620px) {
+    .login-btn {
+        margin: auto;
+        margin-top: 5px;
+        width: 96%;
+    }
+}
+
+@media (max-width: 576px) {
+    .login-btn,
+    .navInputEmail,
+    .navInputPassword,
+    .userSelection {
+        margin: auto;
+        margin-top: 5px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 168px) {
+    #brand {
+        font-size: 0%;
+    }
+}

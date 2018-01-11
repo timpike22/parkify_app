@@ -14,6 +14,27 @@ export const driverService = {
 function login(driver) {
     return axios.post('/driver/loginout/', driver).then(handleResponse);    
 }
+/*
+function login(email, password) {
+    return axios.post('/driver/authenticate', JSON.stringify({ email, password}))
+        .then(response => {
+            if (!response.statusText === "OK") {
+                return Promise.reject(response.statusText);
+            }
+                return response.json();
+        })
+        .then(driver => {
+            if (driver && driver.token) {
+                localStorage.setItem('driver', JSON.stringify(driver));
+            }
+                return driver
+        });
+}
+*/
+
+function login(driver) {
+    return axios.post('/driver/loginout/', driver).then(handleResponse);
+}
 
 function logout() {
     // remove driver from local storage to log driver out
@@ -34,6 +55,7 @@ function getById(id) {
 }
 
 function register(driver) {
+    console.log(driver)
     return axios.post('/driver', driver).then(handleResponse);
 }
 
