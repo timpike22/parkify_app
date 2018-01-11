@@ -36,31 +36,24 @@ class App extends React.Component {
     const { alert, ownerAuthentication, driverAuthentication } = this.props;
     return (
     <div>
-     
+      {alert.message &&
+        <div className={`alert ${alert.type}`}>{alert.message}</div>
+      }
+      <Router history={history}>
       <div>
-        <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
-            {alert.message &&
-              <div className={`alert ${alert.type}`}>{alert.message}</div>
-            }
-            <Router history={history}>
-            <div>
-            <Navbar />
-            <Wrapper>
-                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
-                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
-                <Route exact path="/" component={OwnerRegisterPage} />
-                <Route exact path="/register/driver" component={DriverRegisterPage} />
-                <Route exact path="/login/owner" component={OwnerLoginPage} />
-                <Route exact path="/login/driver" component={DriverLoginPage} />
-                {/*<Route exact path="/" component={} />*/}
-            </Wrapper>
-               
-              </div>
-            </Router>
-          </div>
+      <Navbar />
+      <Wrapper>
+          <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
+          <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
+          <Route exact path="/" component={OwnerRegisterPage} />
+          <Route exact path="/register/driver" component={DriverRegisterPage} />
+          <Route exact path="/login/owner" component={OwnerLoginPage} />
+          <Route exact path="/login/driver" component={DriverLoginPage} />
+          {/*<Route exact path="/" component={} />*/}
+      </Wrapper>
+          
         </div>
-      </div>
+      </Router>
       </div>
     );
   }

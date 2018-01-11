@@ -7,6 +7,7 @@ import { ownerActions } from '../actions'
 import { loginSuccess, loginFailure } from '../actions/owner-actions';
 import { history } from '../helpers';
 import axios from 'axios';
+import '../style/navbar.css';
 
 class OwnerLoginPage extends React.Component {
     constructor(props) {

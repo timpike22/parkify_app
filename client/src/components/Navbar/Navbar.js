@@ -4,33 +4,39 @@ import "./Navbar.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props =>
-    <nav className="navbar navbar-dark bg-dark">
-        <div className="container-fluid">
-            <div className="navbar-header">
-                <Link className="navbar-brand" to="/">
-                    Parkify
-        </Link>
-            </div>
-            <ul className="nav navbar-nav">
-                <li
-                    className={
-                        window.location.pathname === "/" ||
-                            window.location.pathname === "/"
-                            ? "active"
-                            : ""
-                    }
-                >
-                    <Link to="/">About</Link>
-                </li>
-                <li
-                    className={window.location.pathname === "/" ? "active" : ""}
-                >
-                    <Link to="/discover">Discover</Link>
-                </li>
-                <li className={window.location.pathname === "/search" ? "active" : ""}>
-                    <Link to="/search">Search</Link>
-                </li>
+    <nav className="navbar navbar-expand-md navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">Expand at md</a>
+        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className="collapse navbar-collapse" id="navbarsExample04">
+            <ul className="navbar-nav mr-auto">
+            <li className="nav-item active">
+                <a className="nav-link" href="#">Home
+                <span className="sr-only">(current)</span>
+                </a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link" href="#">Link</a>
+            </li>
+            <li className="nav-item">
+                <a className="nav-link disabled" href="#">Disabled</a>
+            </li>
+            <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="http://example.com" id="dropdown04" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Dropdown</a>
+                <div className="dropdown-menu" aria-labelledby="dropdown04">
+                <a className="dropdown-item" href="#">Action</a>
+                <a className="dropdown-item" href="#">Another action</a>
+                <a className="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
             </ul>
+            <form className="form-inline my-2 my-md-0">
+            <input className="form-control" type="text" placeholder="Search" />
+            </form>
         </div>
     </nav>;
 

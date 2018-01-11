@@ -8,7 +8,7 @@ import { ownerRegisterSuccess, ownerRegisterFailure } from '../actions/owner-act
 import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
-
+import '../style/navbar.css';
 
 class OwnerRegisterPage extends React.Component {
     constructor(props) {
@@ -119,8 +119,7 @@ class OwnerRegisterPage extends React.Component {
         const { ownerRegistering } = this.props;
         const { user, submitted } = this.state;
         return (
-            <div className="col-md-6 col-md-offset-3">
-            <Jumbotron>
+            <div className="container"> 
                 <h2>Register to Rent Your Space</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
@@ -152,11 +151,17 @@ class OwnerRegisterPage extends React.Component {
                         }
 
                     </div>
-                    <div className="form-check form-check-inline user-option">
-                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" />
-                                <label className="form-check-label" for="ownerRadio">Owner</label>
-                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
-                                    <label className="form-check-label" for="driverRadio">Driver</label>
+                    <div class="form-check form-check-inline user-option">
+                        <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" checked />
+                        <label className="form-check-label" for="ownerRadio">
+                            Owner
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline user-option">
+                        <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
+                        <label className="form-check-label" for="driverRadio">
+                            Driver
+                        </label>
                     </div>
                     
                     
@@ -166,7 +171,6 @@ class OwnerRegisterPage extends React.Component {
                         <Link to="/LoginPage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
-            </Jumbotron>    
             </div>
         );
     }
