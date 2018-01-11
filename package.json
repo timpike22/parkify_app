@@ -34,20 +34,9 @@
     "redux-promise": "^0.5.3"
   },
   "scripts": {
-    //"server": "node server.js",
-    //"client": "node scripts/start-client.js",
     "start": "node server",
     "install": "cd client && yarn build && cd ..",
-    /*"start": "concurrently \"nodemon server.js\" \"npm run client\"",*/
-    //"start": "react-scripts start",
-    //"build": "node scripts/build.js",
-    //"build": "react-scripts build",
     "seed": "node scripts/seedDB.js",
-    //"test": "echo \"Error: no test specified\" && exit 1",
-    //"test": "react-scripts test --env=jsdom",
-    
-    
-    
     "eject": "react-scripts eject"
   }
 }
