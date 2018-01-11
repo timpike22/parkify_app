@@ -38,7 +38,7 @@
     //"client": "node scripts/start-client.js",
     "start": "node server",
     "install": "cd client && yarn build && cd ..",
-    //"start": "concurrently \"nodemon server.js\" \"npm run client\"",
+    /*"start": "concurrently \"nodemon server.js\" \"npm run client\"",*/
     //"start": "react-scripts start",
     //"build": "node scripts/build.js",
     //"build": "react-scripts build",
