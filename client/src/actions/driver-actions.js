@@ -56,14 +56,14 @@ export const loginFailure = (driver) => {
     }
 }
 
-export const registerSuccess = (driver) => {
+export const driverRegisterSuccess = (driver) => {
     return {
         type: driverConstants.REGISTER_SUCCESS,
         driver
     }
 }
 
-export const registerFailure = (driver) => {
+export const driverRegisterFailure = (driver) => {
     return {
         type: driverConstants.REGISTER_FAILURE,
         driver

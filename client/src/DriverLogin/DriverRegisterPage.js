@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { driverService } from '../services'
-import { registerSuccess, registerFailure } from '../actions/driver-actions';
+import { driverRegisterSuccess, driverRegisterFailure } from '../actions/driver-actions';
 import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 
@@ -59,11 +59,11 @@ class DriverRegisterPage extends React.Component {
                 console.log(response);
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
-                    dispatch(registerSuccess(response.data))
+                    dispatch(driverRegisterSuccess(response.data))
                     localStorage.setItem("driver", response.data);
                     history.push('/DriverHomePage')
                 } else {
-                    dispatch(registerFailure())
+                    dispatch(driverRegisterFailure())
                     this.setState({
                         driver: {
                             firstName: '',
@@ -128,6 +128,7 @@ class DriverRegisterPage extends React.Component {
         );
     }
 }
+
 
 function mapStateToProps(state) {
     const { registering } = state.driverRegistration;

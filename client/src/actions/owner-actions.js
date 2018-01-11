@@ -39,14 +39,14 @@ export const loginFailure = (owner) => {
     }
 }
 
-export const registerSuccess = (owner) => {
+export const ownerRegisterSuccess = (owner) => {
     return{
         type: ownerConstants.REGISTER_SUCCESS, 
         owner
     }
 }
 
-export const registerFailure = (owner) => {
+export const ownerRegisterFailure = (owner) => {
     return {
         type: ownerConstants.REGISTER_FAILURE,
         owner

@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ownerService} from '../services'
 import { driverService } from '../services'
-import { registerSuccess, registerFailure } from '../actions/owner-actions';
+import { driverRegisterSuccess, driverRegisterFailure } from '../actions/driver-actions';
+import { ownerRegisterSuccess, ownerRegisterFailure } from '../actions/owner-actions';
 import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
@@ -71,11 +72,11 @@ class OwnerRegisterPage extends React.Component {
                     console.log(response);
                     console.log(response.statusText);
                     if (response.statusText === "OK") {
-                        dispatch(registerSuccess(response.data))
+                        dispatch(ownerRegisterSuccess(response.data))
                         localStorage.setItem("owner", response.data);
                         history.push('/OwnerHomePage')
                     } else {
-                        dispatch(registerFailure())
+                        dispatch(ownerRegisterFailure())
                         this.setState({
                             owner: {
                                 firstName: '',
@@ -93,11 +94,11 @@ class OwnerRegisterPage extends React.Component {
                 console.log(response);
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
-                    dispatch(registerSuccess(response.data))
+                    dispatch(driverRegisterSuccess(response.data))
                     localStorage.setItem("driver", response.data);
                     history.push('/DriverHomePage')
                 } else {
-                    dispatch(registerFailure())
+                    dispatch(driverRegisterFailure())
                     this.setState({
                         driver: {
                             firstName: '',
@@ -114,7 +115,8 @@ class OwnerRegisterPage extends React.Component {
     }
 
     render() {
-        const { registering } = this.props;
+        const { driverRegistering } = this.props;
+        const { ownerRegistering } = this.props;
         const { user, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
@@ -171,9 +173,11 @@ class OwnerRegisterPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { registering } = state.Registration;
+    console.log(state);
+    const { driverRegistering } = state.driverRegistration;
+    const { ownerRegistering } = state.ownerRegistration;
     return {
-        registering
+        driverRegistering, ownerRegistering
     };
 }
 
