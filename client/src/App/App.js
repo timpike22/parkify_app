@@ -15,7 +15,9 @@ import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
 import { OwnerRegisterPage } from '../OwnerLogin';
 import { DriverRegisterPage } from '../DriverLogin';
-
+import Navbar  from '../components/Navbar';
+import Wrapper from '../components/Wrapper';
+//import Footer from '../components/Footer';
 
 
 
@@ -33,25 +35,32 @@ class App extends React.Component {
   render() {
     const { alert, ownerAuthentication, driverAuthentication } = this.props;
     return (
-      <div className="jumbotron">
+    <div>
+     
+      <div>
         <div className="container">
           <div className="col-sm-8 col-sm-offset-2">
             {alert.message &&
               <div className={`alert ${alert.type}`}>{alert.message}</div>
             }
             <Router history={history}>
-              <div>
-                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/owner" component={OwnerHomePage} />
+            <div>
+            <Navbar />
+            <Wrapper>
+                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
                 <Route exact path="/register/owner" component={OwnerRegisterPage} />
                 <Route exact path="/register/driver" component={DriverRegisterPage} />
                 <Route exact path="/login/owner" component={OwnerLoginPage} />
                 <Route exact path="/login/driver" component={DriverLoginPage} />
                 {/*<Route exact path="/" component={} />*/}
+            </Wrapper>
+           {/*} <Footer />    */} 
               </div>
             </Router>
           </div>
         </div>
+      </div>
       </div>
     );
   }

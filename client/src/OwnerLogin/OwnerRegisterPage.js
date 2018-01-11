@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { ownerService} from '../services'
 import { registerSuccess, registerFailure } from '../actions/owner-actions';
 import { history } from '../helpers';
+import Jumbotron from '../components/Jumbotron';
 
 import axios from 'axios';
 
@@ -82,6 +83,7 @@ class OwnerRegisterPage extends React.Component {
         const { owner, submitted } = this.state;
         return (
             <div className="col-md-6 col-md-offset-3">
+            <Jumbotron>
                 <h2>Register to Rent Your Space</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !owner.firstName ? ' has-error' : '')}>
@@ -120,6 +122,7 @@ class OwnerRegisterPage extends React.Component {
                         <Link to="/OwnerLoginPage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
+            </Jumbotron>    
             </div>
         );
     }

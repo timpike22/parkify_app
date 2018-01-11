@@ -13,29 +13,47 @@ export const driverActions = {
 
 function login(email, password) {
     return dispatch => {
-        dispatch(request({ email }));
+        dispatch(loginRequest({ email }));
 
         driverService.login(email, password)
             .then(
             driver => {
-                dispatch(success(driver));
-                history.push('/');
+                dispatch(loginSuccess(driver));
+                history.push('/login/driver');
             },
             error => {
-                dispatch(failure(error));
-                dispatch(alertActions.error(error.message));
+                dispatch(loginFailure(error));
+                dispatch(alertActions.error(error.messege));
             }
             );
     };
 
-    function request(driver) { return { type: driverConstants.LOGIN_REQUEST, driver } }
-    function success(driver) { return { type: driverConstants.LOGIN_SUCCESS, driver } }
-    function failure(error) { return { type: driverConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {
     driverService.logout();
     return { type: driverConstants.LOGOUT };
+}
+
+export const loginSuccess = (driver) => {
+    return {
+        type: driverConstants.LOGIN_SUCCESS,
+        driver
+    }
+}
+
+export const loginRequest = (driver) => {
+    return {
+        type: driverConstants.LOGIN_REQUEST,
+        driver
+    }
+}
+
+export const loginFailure = (driver) => {
+    return {
+        type: driverConstants.LOGIN_FAILURE,
+        driver
+    }
 }
 
 export const registerSuccess = (driver) => {
@@ -59,7 +77,8 @@ function register(driver) {
         driverService.register(driver)
             .then(
             driver => {
-                dispatch(success());
+                dispatch(success(driver));
+                window.localStorage.setItem('driver', JSON.stringify(driver));
                 history.push('/');
                 dispatch(alertActions.success('Registration successful'));
             },
@@ -110,4 +129,4 @@ function _delete(id) {
     function request(id) { return { type: driverConstants.DELETE_REQUEST, id } }
     function success(id) { return { type: driverConstants.DELETE_SUCCESS, id } }
     function failure(id, error) { return { type: driverConstants.DELETE_FAILURE, id, error } }
-}
+} 

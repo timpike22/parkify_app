@@ -7,14 +7,15 @@ export function driverAuthentication(state = initialState, action) {
     switch (action.type) {
         case driverConstants.LOGIN_REQUEST:
             return {
+                ...state,
                 loggingIn: true,
-                driver: action.driver
+                data: action.driver
             };
         case driverConstants.LOGIN_SUCCESS:
             return {
                 ...state,
                 loggedIn: true,
-                driver: action.driver
+                data: action.driver
             };
         case driverConstants.REGISTER_SUCCESS:
             console.log(action);

@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import { driverActions } from '../actions';
+import { driverAuthentication } from '../reducers'
+import { driverService } from '../services'
+import { driverActions } from '../actions'
+import { loginSuccess, loginFailure } from '../actions/driver-actions';
+import { history } from '../helpers';
+import axios from 'axios';
 
 class DriverLoginPage extends React.Component {
     constructor(props) {
@@ -21,6 +25,12 @@ class DriverLoginPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        axios.get('/driver/authenticate')
+            .then(res => console.log(res))
+            .catch(e => console.log(e));
+    }
+
     handleChange(e) {
         const { name, value } = e.target;
         this.setState({ [name]: value });
@@ -33,8 +43,31 @@ class DriverLoginPage extends React.Component {
         this.setState({ submitted: true });
         const { email, password } = this.state;
         const { dispatch } = this.props;
+        const driver = {
+            email: email,
+            password: password
+        }
         if (email && password) {
-            dispatch(driverActions.login(email, password));
+            driverService.login(driver).then(response => {
+                console.log(response);
+                console.log(response.statusText);
+                if (response.statusText === "OK") {
+                    dispatch(loginSuccess(response.data))
+                    localStorage.setItem("driver", response.data);
+                    //   dispatch(loginSuccess(driver))
+                    // localStorage.setItem("driver", driver);
+                    history.push('/DriverHomePage')
+                } else {
+                    dispatch(loginFailure())
+                    this.setState({
+                        email: '',
+                        password: '',
+                        submitted: false
+
+                    })
+                }
+            })
+            // dispatch(driverActions.login(email, password));
         }
     }
 
@@ -42,7 +75,7 @@ class DriverLoginPage extends React.Component {
         const { loggingIn } = this.props;
         const { email, password, submitted } = this.state;
         return (
-            <div className="col-md-6 col-md-offset-3">
+            <div>
                 <h2>Login</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !email ? ' has-error' : '')}>
@@ -61,7 +94,7 @@ class DriverLoginPage extends React.Component {
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary">Login</button>
-                        <Link to="/register" className="btn btn-link">Register</Link>
+                        <Link to="/register/driver" className="btn btn-link">Register</Link>
                     </div>
                 </form>
             </div>
@@ -70,7 +103,7 @@ class DriverLoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
+    const { loggingIn } = state.driverAuthentication;
     return {
         loggingIn
     };
