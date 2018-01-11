@@ -14,7 +14,7 @@ export const driverService = {
 function login(driver) {
     return axios.post('/driver/loginout/', driver).then(handleResponse);    
 }
-
+/*
 function login(email, password) {
     return axios.post('/driver/authenticate', JSON.stringify({ email, password}))
         .then(response => {
