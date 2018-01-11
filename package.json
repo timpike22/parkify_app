@@ -1,6 +1,9 @@
 {
   "name": "parkify_app",
   "version": "1.0.0",
+  "engines": {
+    "node": "6.11.1"
+  },
   "description": "back end",
   "main": "server.js",
   "repository": "https://github.com/timpike22/parkify_app.git",
