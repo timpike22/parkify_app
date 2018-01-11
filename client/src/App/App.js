@@ -13,7 +13,7 @@ import { PrivateDriverRoute } from '../components';
 import { PrivateOwnerRoute } from '../components';
 import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
-import { RegisterPage } from '../OwnerLogin';
+import { RegisterPage } from '../RegisterPage';
 import Navbar  from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
