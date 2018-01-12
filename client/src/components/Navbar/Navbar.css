@@ -5,3 +5,7 @@ body {
 .navbar {
     margin-bottom: 20px;
 }
+
+.brand {
+    font-family: 'Segoe Script', Tahoma, Geneva, Verdana, sans-serif;
+}

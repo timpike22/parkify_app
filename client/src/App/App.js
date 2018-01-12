@@ -46,14 +46,16 @@ class App extends React.Component {
             <Router history={history}>
             <div>
             <Navbar />
-            <Wrapper>
-                <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
-                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
-                <Route exact path="/" component={RegisterPage} />
-                <Route exact path="/login/owner" component={OwnerLoginPage} />
-                <Route exact path="/login/driver" component={DriverLoginPage} />
+            <div className="container">
+              <Wrapper>
+                  <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
+                  <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
+                  <Route exact path="/" component={RegisterPage} />
+                  <Route exact path="/login/owner" component={OwnerLoginPage} />
+                  <Route exact path="/login/driver" component={DriverLoginPage} />
 
-            </Wrapper>
+              </Wrapper>
+            </div>
                
               </div>
             </Router>

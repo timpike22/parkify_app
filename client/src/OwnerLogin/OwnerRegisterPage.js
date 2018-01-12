@@ -8,7 +8,6 @@ import { ownerRegisterSuccess, ownerRegisterFailure } from '../actions/owner-act
 import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
-import '../style/navbar.css';
 
 class OwnerRegisterPage extends React.Component {
     constructor(props) {

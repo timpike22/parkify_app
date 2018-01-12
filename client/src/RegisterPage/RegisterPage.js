@@ -8,7 +8,7 @@ import { ownerRegisterSuccess, ownerRegisterFailure } from '../actions/owner-act
 import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
-
+import './form.css';
 
 class RegisterPage extends React.Component {
     constructor(props) {
@@ -152,13 +152,11 @@ class RegisterPage extends React.Component {
 
                     </div>
                     <div className="form-check form-check-inline user-option">
-                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" />
+                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" checked/>
                                 <label className="form-check-label" htmlFor="ownerRadio">Owner</label>
                             <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
                                     <label className="form-check-label" htmlFor="driverRadio">Driver</label>
-                    </div>
-                    
-                    
+                    </div>                    
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
 
