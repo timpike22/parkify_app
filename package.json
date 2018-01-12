@@ -1,0 +1,46 @@
+{
+  "name": "parkify_app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "8.9.4"
+  },
+  "scripts": {
+    "start": "concurrently \"cd server && yarn server\" \"cd client && yarn start\"",
+    "build": "cd /client && yarn start",
+    "seed": "node scripts/seedDB.js",
+    "eject": "react-scripts eject"
+  },
+  "description": "back end",
+  "main": "server.js",
+  "repository": "https://github.com/timpike22/parkify_app.git",
+  "author": "Tim Pike, Andrew Presnell, Darnell Willis, Marco Khodr, Jarred Maestas",
+  "license": "MIT",
+  "dependencies": {
+    "auth0-js": "^9.0.1",
+    "axios": "^0.17.1",
+    "bcrypt": "^1.0.3",
+    "body-parser": "^1.18.2",
+    "bootstrap": "^3.3.7",
+    "concurrently": "^3.5.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^2.0.1",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "mongoose": "^4.13.7",
+    "morgan": "^1.9.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "path": "^0.12.7",
+    "react": "^16.2.0",
+    "react-bootstrap": "^0.31.5",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0"
+  }
+}
