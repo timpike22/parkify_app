@@ -8,7 +8,6 @@ import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
 
-
 class OwnerRegisterPage extends React.Component {
     constructor(props) {
         super(props);

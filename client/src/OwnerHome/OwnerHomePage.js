@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { ownerActions } from '../actions';
+import { CreateParkingSpotForm } from '../ParkingSpotForms/CreateParkingSpotForm';
 
 class OwnerHomePage extends React.Component {
     componentDidMount() {
@@ -18,7 +19,7 @@ class OwnerHomePage extends React.Component {
         return (
             <div>
                 <p>Are you here to rent your spot?</p>
-                
+                <CreateParkingSpotForm />
 
             </div>
         )
