@@ -27,7 +27,7 @@ function create(vehicle) {
     return dispatch => {
         dispatch(request(vehicle));
 
-        vehicleService.register(vehicle)
+        vehicleService.create(vehicle)
             .then(
             vehicle => {
                 dispatch(success(vehicle));
@@ -68,9 +68,9 @@ function _delete(id) {
     return dispatch => {
         dispatch(request(id));
 
-        ownerService.delete(id)
+        vehicleService.delete(id)
             .then(
-            owner => {
+            vehicle => {
                 dispatch(success(id));
             },
             error => {
