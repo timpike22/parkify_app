@@ -40,27 +40,22 @@ class App extends React.Component {
         <div className={`alert ${alert.type}`}>{alert.message}</div>
       }
       <Router history={history}>
-      <div>
-            {alert.message &&
-              <div className={`alert ${alert.type}`}>{alert.message}</div>
-            }
-            <Router history={history}>
-            <div>
-            <Navbar />
+        <div>
+          {alert.message &&
+            <div className={`alert ${alert.type}`}>{alert.message}</div>
+          }           
+          <Navbar />
+            <div className="container">
+              <Wrapper>            
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/login/driver" component={DriverLoginPage} />
                 <Route exact path="/" component={RegisterPage} />
                 <Route exact path="/login/owner" component={OwnerLoginPage} />
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
-            <Wrapper>
-
-              </Wrapper>
-            </div>
-               
-              </div>
-            </Router>
-        </div>
+            </Wrapper>
+          </div>
+        </div> 
       </Router>
       </div>
     );
