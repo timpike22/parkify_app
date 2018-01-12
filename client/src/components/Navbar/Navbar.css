@@ -1,0 +1,15 @@
+body {
+    padding-bottom: 20px;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+.brand {
+    font-family: 'Segoe Script', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.btn {
+    margin-right: 10px;
+}
