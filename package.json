@@ -6,7 +6,7 @@
   },
   "scripts": {
     "start": "concurrently \"cd server && yarn server\" \"cd client && yarn start\"",
-    "client": "cd /client && yarn start",
+    "build": "cd /client && yarn start",
     "seed": "node scripts/seedDB.js",
     "eject": "react-scripts eject"
   },
