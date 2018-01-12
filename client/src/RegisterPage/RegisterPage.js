@@ -152,7 +152,7 @@ class RegisterPage extends React.Component {
 
                     </div>
                     <div className="form-check form-check-inline user-option">
-                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" checked/>
+                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner"/>
                                 <label className="form-check-label" htmlFor="ownerRadio">Owner</label>
                             <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
                                     <label className="form-check-label" htmlFor="driverRadio">Driver</label>
