@@ -60,7 +60,7 @@ class DriverRegisterPage extends React.Component {
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
                     dispatch(registerSuccess(response.data))
-                    localStorage.setItem("driver", response.data);
+                    localStorage.setItem("driver", response.data.driverID);
                     history.push('/DriverHomePage')
                 } else {
                     dispatch(registerFailure())

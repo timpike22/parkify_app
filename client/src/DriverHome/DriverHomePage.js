@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { driverActions } from '../actions';
+import { driverAuthentication } from '../reducers/driver-auth-reducer';
+import { CreateVehicleForm } from '../VehicleForms/CreateVehicleForm';
 
 class DriverHomePage extends React.Component {
     componentDidMount() {
@@ -14,42 +16,21 @@ class DriverHomePage extends React.Component {
     }
 
     render() {
-        const { driver, drivers } = this.props;
+        const { driver, drivers, vehicle } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {driver.firstName}!</h1>
-                <p>Are you looking for a spot or here to rent your spot?</p>
-
-                <h3>All registered drivers:</h3>
-                {drivers.loading && <em>Loading drivers...</em>}
-                {drivers.error && <span className="text-danger">ERROR: {drivers.error}</span>}
-                {drivers.items &&
-                    <ul>
-                        {drivers.items.map((driver, index) =>
-                            <li key={driver.id}>
-                                {driver.firstName + ' ' + driver.lastName}
-                                {
-                                    driver.deleting ? <em> - Deleting...</em>
-                                        : driver.deleteError ? <span className="text-danger"> - ERROR: {driver.deleteError}</span>
-                                            : <span> - <a onClick={this.handleDeletedriver(driver.id)}>Delete</a></span>
-                                }
-                            </li>
-                        )}
-                    </ul>
-                }
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
+            <div>
+                <CreateVehicleForm />
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    const { drivers, authentication } = state;
-    const { driver } = authentication;
+    const { drivers, authentication, vehicle } = state;
+    const { driver } = driverAuthentication;
     return {
         driver,
+        vehicle,
         drivers
     };
 }
