@@ -53,7 +53,7 @@ class OwnerLoginPage extends React.Component {
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
                     dispatch(ownerLoginSuccess(response.data))
-                    localStorage.setItem("owner", response.data);
+                    localStorage.setItem("owner", response.data.ownerID);
                     //   dispatch(loginSuccess(owner))
                     // localStorage.setItem("owner", owner);
                     history.push('/ownerHomePage')
