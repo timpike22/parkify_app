@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-
 import { driverActions } from '../actions';
-
+import ParkingSpace_List from '../containers/ParkingSpaceList';
+import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
+import SearchBar from '../containers/SearchBar';
 class DriverHomePage extends React.Component {
     componentDidMount() {
         this.props.dispatch(driverActions.getAll());
@@ -16,27 +17,13 @@ class DriverHomePage extends React.Component {
     render() {
         const { driver, drivers } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-                <h1>Hi {driver.firstName}!</h1>
+            <div>
+     
                 <p>Are you looking for a spot or here to rent your spot?</p>
+            <SearchBar />
+            <ParkingSpace_List />
+            <ParkingSpaceDetail />   
 
-                <h3>All registered drivers:</h3>
-                {drivers.loading && <em>Loading drivers...</em>}
-                {drivers.error && <span className="text-danger">ERROR: {drivers.error}</span>}
-                {drivers.items &&
-                    <ul>
-                        {drivers.items.map((driver, index) =>
-                            <li key={driver.id}>
-                                {driver.firstName + ' ' + driver.lastName}
-                                {
-                                    driver.deleting ? <em> - Deleting...</em>
-                                        : driver.deleteError ? <span className="text-danger"> - ERROR: {driver.deleteError}</span>
-                                            : <span> - <a onClick={this.handleDeletedriver(driver.id)}>Delete</a></span>
-                                }
-                            </li>
-                        )}
-                    </ul>
-                }
                 <p>
                     <Link to="/login">Logout</Link>
                 </p>
@@ -46,13 +33,13 @@ class DriverHomePage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const { drivers, authentication } = state;
-    const { driver } = authentication;
+    const { drivers, driverAuthentication } = state;
+    const { driver } = driverAuthentication;
     return {
         driver,
         drivers
     };
 }
 
-const connecteddriverHomePage = connect(mapStateToProps)(DriverHomePage);
-export { connecteddriverHomePage as DriverHomePage };
+const connectedDriverHomePage = connect(mapStateToProps)(DriverHomePage);
+export { connectedDriverHomePage as DriverHomePage };

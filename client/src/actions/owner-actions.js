@@ -4,9 +4,7 @@ import { alertActions } from './';
 import { history } from '../helpers';
 
 export const ownerActions = {
-
     logout,
-
     getAll,
     delete: _delete
 };
