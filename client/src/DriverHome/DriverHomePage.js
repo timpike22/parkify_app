@@ -23,7 +23,7 @@ class DriverHomePage extends React.Component {
             <SearchBar />
             <ParkingSpace_List />
             <ParkingSpaceDetail />   
-
+            <CreateVehicleForm />
                 <p>
                     <Link to="/login">Logout</Link>
                 </p>
