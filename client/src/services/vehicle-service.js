@@ -17,12 +17,12 @@ function getById(id) {
     return axios.get('/vehicle/id/' + id).then(handleResponse);
 }
 
-function create(owner) {
-    return axios.post('/vehicle', owner).then(handleResponse);
+function create(vehicle) {
+    return axios.post('/vehicle', vehicle).then(handleResponse);
 }
 
-function update(owner) {
-    return axios.put('/vehicle/id/' + owner.id).then(handleResponse);
+function update(vehicle) {
+    return axios.put('/vehicle/id/' + vehicle.id).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
