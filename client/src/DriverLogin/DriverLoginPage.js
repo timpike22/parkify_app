@@ -53,7 +53,7 @@ class DriverLoginPage extends React.Component {
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
                     dispatch(loginSuccess(response.data))
-                    localStorage.setItem("driver", response.data);
+                    localStorage.setItem("driver", response.data.driverID);
                     //   dispatch(loginSuccess(driver))
                     // localStorage.setItem("driver", driver);
                     history.push('/DriverHomePage')
