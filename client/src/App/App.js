@@ -14,6 +14,8 @@ import { PrivateOwnerRoute } from '../components';
 import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
 import { OwnerRegisterPage } from '../OwnerLogin';
+import { CreateVehicleForm } from '../VehicleForms';
+import { CreateParkingSpotForm } from '../ParkingSpotForms';
 import { DriverRegisterPage } from '../DriverLogin';
 import Navbar  from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
@@ -48,11 +50,13 @@ class App extends React.Component {
             <Navbar />
             <Wrapper>
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
-                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
+                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <Route exact path="/register/owner" component={OwnerRegisterPage} />
                 <Route exact path="/register/driver" component={DriverRegisterPage} />
                 <Route exact path="/login/owner" component={OwnerLoginPage} />
                 <Route exact path="/login/driver" component={DriverLoginPage} />
+                <Route exact path="/create/vehicle" component={CreateVehicleForm} />
+                <Route exact path="/create/parkingspot" component={CreateParkingSpotForm} />
                 {/*<Route exact path="/" component={} />*/}
             </Wrapper>
            {/*} <Footer />    */} 
