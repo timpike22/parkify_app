@@ -13,11 +13,13 @@ import { PrivateDriverRoute } from '../components';
 import { PrivateOwnerRoute } from '../components';
 import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
-import { OwnerRegisterPage } from '../OwnerLogin';
-import { DriverRegisterPage } from '../DriverLogin';
-import Navbar  from '../components/Navbar';
+import { RegisterPage } from '../RegisterPage';
+import { Navbar } from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
-//import Footer from '../components/Footer';
+import Footer from '../components/Footer';
+import  Dashboard  from '../darnell'
+
+
 
 
 
@@ -36,31 +38,27 @@ class App extends React.Component {
     const { alert, ownerAuthentication, driverAuthentication } = this.props;
     return (
     <div>
-     
-      <div>
-        <div className="container">
-          <div className="col-sm-8 col-sm-offset-2">
-            {alert.message &&
-              <div className={`alert ${alert.type}`}>{alert.message}</div>
-            }
-            <Router history={history}>
-            <div>
-            <Navbar />
-            <Wrapper>
+      {alert.message &&
+        <div className={`alert ${alert.type}`}>{alert.message}</div>
+      }
+      <Router history={history}>
+        <div>
+          {alert.message &&
+            <div className={`alert ${alert.type}`}>{alert.message}</div>
+          }           
+          
+            <div className="container">
+              <Wrapper>           
+                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/logindriver" component={DriverLoginPage} />
+                <Route exact path="/" component={RegisterPage} />
+                <Route exact path="/loginowner" component={OwnerLoginPage} />
+                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
-                <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driver" component={DriverHomePage} />
-                <Route exact path="/register/owner" component={OwnerRegisterPage} />
-                <Route exact path="/register/driver" component={DriverRegisterPage} />
-                <Route exact path="/login/owner" component={OwnerLoginPage} />
-                <Route exact path="/login/driver" component={DriverLoginPage} />
-                {/*<Route exact path="/" component={} />*/}
             </Wrapper>
-           {/*} <Footer />    */} 
-              </div>
-            </Router>
           </div>
-        </div>
-      </div>
+        </div> 
+      </Router>
       </div>
     );
   }

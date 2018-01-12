@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+import "./ProtectedNavbar.css";
 import logo from "./logo.png"
 
 
 // Depending on the current path, this component sets the "active" className on the appropriate navigation link item
-const Navbar = props =>
+const PNavbar = props =>
     <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <a className="navbar-brand brand" href="#">
             <img src={logo} width="30" height="30" alt="" />
@@ -18,11 +18,10 @@ const Navbar = props =>
             <ul className="navbar-nav mr-auto">
             </ul>
             <form className="form-inline my-2 my-md-0">
-                <button className="btn btn-secondary my-2 owner-login" type="submit">Driver Log In</button>
-                <button className="btn btn-primary my-2 my-sm-0 driver-login" type="submit">Owner Log In</button>
+                <button className="btn btn-warning my-2 owner-login" type="submit">Log Out</button>
             </form>
         </div>
     </nav>;
 
-export default Navbar;
+export default PNavbar;
 
