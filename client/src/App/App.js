@@ -14,10 +14,12 @@ import { PrivateOwnerRoute } from '../components';
 import { DriverHomePage } from '../DriverHome';
 import { OwnerHomePage } from '../OwnerHome';
 import { RegisterPage } from '../RegisterPage';
-import Navbar  from '../components/Navbar';
+import { Navbar } from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
 import  Dashboard  from '../darnell'
+
+
 
 
 
@@ -44,13 +46,13 @@ class App extends React.Component {
           {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
           }           
-          <Navbar />
+          
             <div className="container">
-              <Wrapper>            
+              <Wrapper>           
                 <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/login/driver" component={DriverLoginPage} />
+                <Route exact path="/logindriver" component={DriverLoginPage} />
                 <Route exact path="/" component={RegisterPage} />
-                <Route exact path="/login/owner" component={OwnerLoginPage} />
+                <Route exact path="/loginowner" component={OwnerLoginPage} />
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
             </Wrapper>

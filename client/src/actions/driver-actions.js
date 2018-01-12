@@ -4,16 +4,16 @@ import { alertActions } from './';
 import { history } from '../helpers';
 
 export const driverActions = {
-    login,
+   // login,
     logout,
-    register,
+   // register,
     getAll,
     delete: _delete
 };
-
+/*
 function login(email, password) {
     return dispatch => {
-        dispatch(loginRequest({ email }));
+        dispatch(driverLoginRequest({ email }));
 
         driverService.login(email, password)
             .then(
@@ -28,7 +28,7 @@ function login(email, password) {
             );
     };
 
-}
+}*/
 
 function logout() {
     driverService.logout();
@@ -42,12 +42,7 @@ export const loginSuccess = (driver) => {
     }
 }
 
-export const loginRequest = (driver) => {
-    return {
-        type: driverConstants.LOGIN_REQUEST,
-        driver
-    }
-}
+
 
 export const loginFailure = (driver) => {
     return {
@@ -69,7 +64,7 @@ export const driverRegisterFailure = (driver) => {
         driver
     }
 }
-
+/*
 function register(driver) {
     return dispatch => {
         dispatch(request(driver));
@@ -92,7 +87,7 @@ function register(driver) {
     function request(driver) { return { type: driverConstants.REGISTER_REQUEST, driver } }
     function success(driver) { return { type: driverConstants.REGISTER_SUCCESS, driver } }
     function failure(error) { return { type: driverConstants.REGISTER_FAILURE, error } }
-}
+}*/
 
 function getAll() {
     return dispatch => {

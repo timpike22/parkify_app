@@ -9,7 +9,8 @@ import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
 import './form.css';
-
+import { Navbar } from '../components/Navbar';
+import { DriverLoginPage } from '../DriverLogin';
 class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
@@ -84,7 +85,8 @@ class RegisterPage extends React.Component {
                                 email: '',
                                 password: ''
                             },
-                            submitted: false
+                            submitted: false,
+                            userType: ''
                         })
                     }
                 });
@@ -106,7 +108,8 @@ class RegisterPage extends React.Component {
                             email: '',
                             password: ''
                         },
-                        submitted: false
+                        submitted: false,
+                        userType: ''
                     })
                 }
             })
@@ -120,6 +123,7 @@ class RegisterPage extends React.Component {
         const { user, submitted } = this.state;
         return (
             <div>
+              
                 <h2>Register to Rent Your Space</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
@@ -152,7 +156,7 @@ class RegisterPage extends React.Component {
 
                     </div>
                     <div className="form-check form-check-inline user-option">
-                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" checked/>
+                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" />
                                 <label className="form-check-label" htmlFor="ownerRadio">Owner</label>
                             <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
                                     <label className="form-check-label" htmlFor="driverRadio">Driver</label>

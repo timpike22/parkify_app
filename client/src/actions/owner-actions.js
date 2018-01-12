@@ -16,21 +16,16 @@ function logout() {
     return { type: ownerConstants.LOGOUT };
 } 
 
-export const loginSuccess = (owner) => {
+export const ownerLoginSuccess = (owner) => {
     return {
         type: ownerConstants.LOGIN_SUCCESS,
         owner
     }
 }
 
-export const loginRequest = (owner) => {
-    return {
-        type: ownerConstants.LOGIN_REQUEST,
-        owner
-    }
-}
 
-export const loginFailure = (owner) => {
+
+export const ownerLoginFailure = (owner) => {
     return {
         type: ownerConstants.LOGIN_FAILURE,
         owner

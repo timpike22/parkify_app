@@ -1,4 +1,4 @@
-import { userConstants } from '../constants';
+/*import { userConstants } from '../constants';
 
 let user = localStorage.getItem("user");
 const initialState = user ? { loggedIn: true, user } : {};
@@ -30,4 +30,4 @@ export function userAuthentication(state = initialState, action) {
         default:
             return state
     }
-}
+}*/

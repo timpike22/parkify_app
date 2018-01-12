@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ownerAuthentication } from '../reducers'
 import { ownerService } from '../services'
 import { ownerActions } from '../actions'
-import { loginSuccess, loginFailure } from '../actions/owner-actions';
+import { ownerLoginSuccess, ownerLoginFailure } from '../actions/owner-actions';
 import { history } from '../helpers';
 import axios from 'axios';
 
@@ -45,29 +45,29 @@ class OwnerLoginPage extends React.Component {
         const { dispatch } = this.props;
         const owner = {
             email: email,
-            password: password 
-        } 
+            password: password
+        }
         if (email && password) {
-          ownerService.login(owner).then(response => {
+            ownerService.login(owner).then(response => {
                 console.log(response);
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
-                    dispatch(loginSuccess(response.data))
+                    dispatch(ownerLoginSuccess(response.data))
                     localStorage.setItem("owner", response.data);
-                     //   dispatch(loginSuccess(owner))
-                   // localStorage.setItem("owner", owner);
+                    //   dispatch(loginSuccess(owner))
+                    // localStorage.setItem("owner", owner);
                     history.push('/ownerHomePage')
                 } else {
-                    dispatch(loginFailure())
+                    dispatch(ownerLoginFailure())
                     this.setState({
-                            email: '',
-                            password: '',
-                            submitted: false
-                        
+                        email: '',
+                        password: '',
+                        submitted: false
+
                     })
                 }
             })
-           // dispatch(ownerActions.login(email, password));
+            // dispatch(ownerActions.login(email, password));
         }
     }
 
@@ -109,5 +109,5 @@ function mapStateToProps(state) {
     };
 }
 
-const connectedOwnerLoginPage = connect(mapStateToProps)(OwnerLoginPage);
-export { connectedOwnerLoginPage as OwnerLoginPage };
+const connectedownerLoginPage = connect(mapStateToProps)(OwnerLoginPage);
+export { connectedownerLoginPage as OwnerLoginPage };
