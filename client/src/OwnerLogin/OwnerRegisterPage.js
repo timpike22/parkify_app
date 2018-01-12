@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ownerService} from '../services'
 import { driverService } from '../services'
-import { driverRegisterSuccess, driverRegisterFailure } from '../actions/driver-actions';
-import { ownerRegisterSuccess, ownerRegisterFailure } from '../actions/owner-actions';
+import { registerSuccess, registerFailure } from '../actions/owner-actions';
 import { history } from '../helpers';
 import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
@@ -71,11 +70,11 @@ class OwnerRegisterPage extends React.Component {
                     console.log(response);
                     console.log(response.statusText);
                     if (response.statusText === "OK") {
-                        dispatch(ownerRegisterSuccess(response.data))
+                        dispatch(registerSuccess(response.data))
                         localStorage.setItem("owner", response.data);
                         history.push('/OwnerHomePage')
                     } else {
-                        dispatch(ownerRegisterFailure())
+                        dispatch(registerFailure())
                         this.setState({
                             owner: {
                                 firstName: '',
@@ -93,11 +92,11 @@ class OwnerRegisterPage extends React.Component {
                 console.log(response);
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
-                    dispatch(driverRegisterSuccess(response.data))
+                    dispatch(registerSuccess(response.data))
                     localStorage.setItem("driver", response.data);
                     history.push('/DriverHomePage')
                 } else {
-                    dispatch(driverRegisterFailure())
+                    dispatch(registerFailure())
                     this.setState({
                         driver: {
                             firstName: '',
@@ -114,11 +113,11 @@ class OwnerRegisterPage extends React.Component {
     }
 
     render() {
-        const { driverRegistering } = this.props;
-        const { ownerRegistering } = this.props;
+        const { registering } = this.props;
         const { user, submitted } = this.state;
         return (
-            <div className="container"> 
+            <div className="col-md-6 col-md-offset-3">
+            <Jumbotron>
                 <h2>Register to Rent Your Space</h2>
                 <form name="form" onSubmit={this.handleSubmit}>
                     <div className={'form-group' + (submitted && !user.firstName ? ' has-error' : '')}>
@@ -150,39 +149,32 @@ class OwnerRegisterPage extends React.Component {
                         }
 
                     </div>
-                    <div class="form-check form-check-inline user-option">
-                        <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" checked />
-                        <label className="form-check-label" for="ownerRadio">
-                            Owner
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline user-option">
-                        <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
-                        <label className="form-check-label" for="driverRadio">
-                            Driver
-                        </label>
+                    <div className="form-check form-check-inline user-option">
+                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="owner option1" value="owner" />
+                                <label className="form-check-label" for="ownerRadio">Owner</label>
+                            <input onChange={(e) => this.handleUserBtnChange(e)} className="form-check-input" type="radio" name="user-option" id="driver option2" value="driver" />
+                                    <label className="form-check-label" for="driverRadio">Driver</label>
                     </div>
                     
                     
                     <div className="form-group">
                         <button className="btn btn-primary">Register</button>
 
-                        <Link to="/LoginPage" className="btn btn-link">Cancel</Link>
+                        <Link to="/OwnerLoginPage" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
+            </Jumbotron>    
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    console.log(state);
-    const { driverRegistering } = state.driverRegistration;
-    const { ownerRegistering } = state.ownerRegistration;
+    const { registering } = state.ownerRegistration;
     return {
-        driverRegistering, ownerRegistering
+        registering
     };
 }
 
-const connectedRegisterPage = connect(mapStateToProps)(OwnerRegisterPage);
-export { connectedRegisterPage as OwnerRegisterPage };
+const connectedOwnerRegisterPage = connect(mapStateToProps)(OwnerRegisterPage);
+export { connectedOwnerRegisterPage as OwnerRegisterPage };
