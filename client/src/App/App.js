@@ -17,6 +17,7 @@ import { RegisterPage } from '../RegisterPage';
 import Navbar  from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
+import  Dashboard  from '../darnell'
 
 
 
@@ -52,6 +53,7 @@ class App extends React.Component {
                 <Route exact path="/" component={RegisterPage} />
                 <Route exact path="/login/owner" component={OwnerLoginPage} />
                 <Route exact path="/login/driver" component={DriverLoginPage} />
+                <Route exact path="/dashboard" component={Dashboard} />
 
             </Wrapper>
                
