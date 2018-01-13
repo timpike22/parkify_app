@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import '../style/App.css';
 import ParkingSpace_List from '../containers/ParkingSpaceList';
@@ -17,7 +17,7 @@ import { RegisterPage } from '../RegisterPage';
 import { Navbar } from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
-import  Dashboard  from '../darnell'
+import NotFound from '../NotFound';
 
 
 
@@ -47,13 +47,16 @@ class App extends React.Component {
             <div className={`alert ${alert.type}`}>{alert.message}</div>
           }           
         
-              <Wrapper>           
-                <Route exact path="/dashboard" component={Dashboard} />
+              <Wrapper> 
+                <Switch> 
+                <Route path="*" component={NotFound} />  
+                <Route exact path="/error" component={NotFound}  />    
                 <Route exact path="/logindriver" component={DriverLoginPage} />
                 <Route exact path="/" component={RegisterPage} />
                 <Route exact path="/loginowner" component={OwnerLoginPage} />
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
+                </Switch>
             </Wrapper>
         </div> 
       </Router>

@@ -5,8 +5,7 @@ import ParkingSpace_List from '../containers/ParkingSpaceList';
 import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
 import SearchBar from '../containers/SearchBar';
 import React from 'react';
-import GoogleApiWrapper from "../components/GoogleMap";
-import "./driverHome.css";
+import "./DriverHomePage.css";
 import PNavbar from "../components/ProtectedNavbar";
 
 class DriverHomePage extends React.Component {
@@ -25,7 +24,6 @@ class DriverHomePage extends React.Component {
                 <PNavbar/>
                     <div className="row">
                         <div className="container-fluid">
-                                <GoogleApiWrapper/>
                             <div className="col-md-6">
                                 <SearchBar />
                                 <ParkingSpace_List />
