@@ -1,4 +1,4 @@
-export const driverConstants = {
+export const parkingSpotConstants = {
     REGISTER_REQUEST: 'DRIVER_REGISTER_REQUEST',
     REGISTER_SUCCESS: 'DRIVER_REGISTER_SUCCESS',
     REGISTER_FAILURE: 'DRIVER_REGISTER_FAILURE',
