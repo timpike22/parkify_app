@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { parkingSpotService} from '../services'
 import { createSuccess, createFailure } from '../actions/parkingSpot-actions';
 import { history } from '../helpers';
-import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
+import "./ParkingForm.css";
 
 class CreateParkingSpotForm extends React.Component {
     constructor(props) {
@@ -65,17 +65,7 @@ class CreateParkingSpotForm extends React.Component {
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
                     dispatch(createSuccess(response.data))
-                    localStorage.setItem("parkingSpot", response.data);
-                    this.setState({
-                        parkingSpot: {
-                            ownerID: '',
-                            street: '',
-                            city: '',
-                            state: '',
-                            zip: ''
-                        },
-                        submitted: false
-                    })
+                    localStorage.setItem("parkingSpot", response.data._id);
                     history.push('/OwnerHomePage')
                 } else {
                     dispatch(createFailure())
@@ -101,8 +91,7 @@ class CreateParkingSpotForm extends React.Component {
         parkingSpot.ownerID = localStorage.getItem("owner");
         console.log("ownerID", localStorage.owner);
         return(
-            <div className="col-md-6 col-md-offset-3">
-                <Jumbotron>
+            <div class="card parking-form col-sm-12 col-md-3">
                     <h2>Add a Parking Spot</h2>
                     <form name="createParkingSpotForm" onSubmit={this.handleSubmit}>
                         <div className={'form-group' + (submitted && !parkingSpot.street ? ' has-error' : '')}>
@@ -141,7 +130,6 @@ class CreateParkingSpotForm extends React.Component {
                             <Link to="/OwnerHomePage" className="btn btn-link">Cancel</Link>
                         </div>
                     </form>
-                </Jumbotron>    
             </div>
         )
     }

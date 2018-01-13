@@ -49,8 +49,6 @@ class App extends React.Component {
           {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
           }           
-          
-            <div className="container">
               <Wrapper> 
                 <Switch>          
                 <Route exact path="/logindriver" component={DriverLoginPage} />
@@ -64,7 +62,6 @@ class App extends React.Component {
                 <Route path="*" component={NotFound} />
                 </Switch>
             </Wrapper>
-          </div>
         </div> 
       </Router>
       </div>

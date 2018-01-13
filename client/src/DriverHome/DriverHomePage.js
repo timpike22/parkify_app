@@ -6,6 +6,7 @@ import ParkingSpace_List from '../containers/ParkingSpaceList';
 import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
 import SearchBar from '../containers/SearchBar';
 import {CreateVehicleForm} from '../VehicleForms';
+import PNavbar from '../components/ProtectedNavbar';
 
 class DriverHomePage extends React.Component {
     
@@ -22,7 +23,7 @@ class DriverHomePage extends React.Component {
         const { driver, drivers } = this.props;
         return (
             <div>
-     
+                <PNavbar/>
                 <p>Are you looking for a spot or here to rent your spot?</p>
             <SearchBar />
             <ParkingSpace_List />
