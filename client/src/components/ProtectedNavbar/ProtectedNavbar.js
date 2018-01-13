@@ -18,7 +18,7 @@ const PNavbar = props =>
             <ul className="navbar-nav mr-auto">
             </ul>
             <form className="form-inline my-2 my-md-0">
-                <button className="btn btn-warning my-2 owner-login" type="submit">Log Out</button>
+                <Link to="/" className="btn btn-warning my-2 owner-login" type="submit">Log Out</Link>
             </form>
         </div>
     </nav>;

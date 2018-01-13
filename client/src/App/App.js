@@ -50,8 +50,6 @@ class App extends React.Component {
         
               <Wrapper> 
                 <Switch> 
-                {/* <Route path="*" component={NotFound} />  */}
-   
                 <Route exact path="/logindriver" component={DriverLoginPage} />
                 <Route exact path="/" component={RegisterPage} />
                 <Route exact path="/loginowner" component={OwnerLoginPage} />
@@ -59,6 +57,7 @@ class App extends React.Component {
                 <Route exact path="/create/parkingspot" component={CreateParkingSpotForm} />
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
+                <Route path="*" component={NotFound} /> 
                 </Switch>
             </Wrapper>
         </div> 
