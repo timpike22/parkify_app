@@ -6,24 +6,21 @@
     "auth0-js": "^9.0.1",
     "axios": "^0.17.1",
     "bootstrap": "^3.3.7",
-    "google-map-react": "^0.27.0",
-    "google-maps-react": "^1.1.2",
-    "history": "^4.7.2",
     "react": "^16.2.0",
     "react-app-env": "^1.2.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
+    "react-scripts": "^1.0.17",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-env start",
+    "build": "react-app-env build",
+    "test": "react-app-env test",
     "eject": "react-scripts eject"
   },
   "proxy": "http://localhost:3001"
