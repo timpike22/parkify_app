@@ -8,6 +8,8 @@ import { driverAuthentication } from './driver-auth-reducer';
 import { ownerAuthentication } from './owner-auth-reducer';
 import { drivers } from './drivers-reducer';
 import { owners } from './owners-reducer';
+import { vehicleCreation } from './vehicle-create-reducer';
+import { parkingSpotCreation } from './parkingSpot-create-reducer';
 
 
 const rootReducer = combineReducers({
@@ -19,6 +21,8 @@ const rootReducer = combineReducers({
     ownerRegistration,
     drivers,
     owners,
+    vehicleCreation,
+    parkingSpotCreation,
     alert
 });
 

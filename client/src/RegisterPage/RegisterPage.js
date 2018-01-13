@@ -75,7 +75,7 @@ class RegisterPage extends React.Component {
                     console.log(response.statusText);
                     if (response.statusText === "OK") {
                         dispatch(ownerRegisterSuccess(response.data))
-                        localStorage.setItem("owner", response.data);
+                        localStorage.setItem("owner", response.data._id);
                         history.push('/OwnerHomePage')
                     } else {
                         dispatch(ownerRegisterFailure())
@@ -98,7 +98,7 @@ class RegisterPage extends React.Component {
                 console.log(response.statusText);
                 if (response.statusText === "OK") {
                     dispatch(driverRegisterSuccess(response.data))
-                    localStorage.setItem("driver", response.data);
+                    localStorage.setItem("driver", response.data._id);
                     history.push('/DriverHomePage')
                 } else {
                     dispatch(driverRegisterFailure())

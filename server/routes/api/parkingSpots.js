@@ -5,13 +5,16 @@ const parkingSpotsController = require("../../controller/parkingSpot");
 router.route("/")
     .get(parkingSpotsController.findAll)
     .post(parkingSpotsController.create)
-    .get(parkingSpotsController.findNear);
 
 //Matches with "/api/parkingSpots/:id"
 router
-    .route("/:id")
+    .route("/id/:id")
     .get(parkingSpotsController.findById)
     .put(parkingSpotsController.update)
     .delete(parkingSpotsController.remove);
+
+router
+    .route("/findnear")
+    .get(parkingSpotsController.findNear);
 
 module.exports = router;

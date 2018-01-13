@@ -27,7 +27,7 @@ function update(vehicle) {
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-    return axios.delete('/vehicle/id/' + id).then(handleResponse);;
+    return axios.delete('/vehicle/id/' + id).then(handleResponse);
 }
 
 function handleResponse(response) {
