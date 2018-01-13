@@ -54,8 +54,6 @@ class DriverLoginPage extends React.Component {
                 if (response.statusText === "OK") {
                     dispatch(loginSuccess(response.data))
                     localStorage.setItem("driver", response.data);
-                    //   dispatch(loginSuccess(driver))
-                    // localStorage.setItem("driver", driver);
                     history.push('/DriverHomePage')
                 } else {
                     dispatch(loginFailure())
@@ -63,11 +61,9 @@ class DriverLoginPage extends React.Component {
                         email: '',
                         password: '',
                         submitted: false
-
-                    })
+                    })                    
                 }
             })
-            // dispatch(driverActions.login(email, password));
         }
     }
 

@@ -5,3 +5,4 @@ export function selectParkingSpace(spot) {
         payload: spot
     };
 }
+
