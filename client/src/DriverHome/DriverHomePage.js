@@ -7,6 +7,7 @@ import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
 import SearchBar from '../containers/SearchBar';
 import {CreateVehicleForm} from '../VehicleForms';
 import PNavbar from '../components/ProtectedNavbar';
+import Gmap from '../Google/Gmap';
 
 class DriverHomePage extends React.Component {
     
@@ -24,14 +25,12 @@ class DriverHomePage extends React.Component {
         return (
             <div>
                 <PNavbar/>
-                <p>Are you looking for a spot or here to rent your spot?</p>
-            <SearchBar />
-            <ParkingSpace_List />
-            <ParkingSpaceDetail />   
-            <CreateVehicleForm />
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
+                <Gmap />
+                <SearchBar />
+                <ParkingSpace_List />
+                <ParkingSpaceDetail />   
+                <CreateVehicleForm />
+                <p><Link to="/login">Logout</Link></p>
             </div>
         );
     }
