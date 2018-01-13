@@ -46,8 +46,7 @@ class App extends React.Component {
           {alert.message &&
             <div className={`alert ${alert.type}`}>{alert.message}</div>
           }           
-          
-            <div className="container">
+        
               <Wrapper>           
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/logindriver" component={DriverLoginPage} />
@@ -56,7 +55,6 @@ class App extends React.Component {
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
             </Wrapper>
-          </div>
         </div> 
       </Router>
       </div>

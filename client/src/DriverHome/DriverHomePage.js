@@ -1,10 +1,14 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { driverActions } from '../actions';
 import ParkingSpace_List from '../containers/ParkingSpaceList';
 import ParkingSpaceDetail from '../containers/ParkingSpaceDetail';
 import SearchBar from '../containers/SearchBar';
+import React from 'react';
+import GoogleApiWrapper from "../components/GoogleMap";
+import "./driverHome.css";
+import PNavbar from "../components/ProtectedNavbar";
+
 class DriverHomePage extends React.Component {
     componentDidMount() {
         this.props.dispatch(driverActions.getAll());
@@ -18,15 +22,20 @@ class DriverHomePage extends React.Component {
         const { driver, drivers } = this.props;
         return (
             <div>
-     
-                <p>Are you looking for a spot or here to rent your spot?</p>
-            <SearchBar />
-            <ParkingSpace_List />
-            <ParkingSpaceDetail />   
-
-                <p>
-                    <Link to="/login">Logout</Link>
-                </p>
+                <PNavbar/>
+                    <div className="row">
+                        <div className="container-fluid">
+                                <GoogleApiWrapper/>
+                            <div className="col-md-6">
+                                <SearchBar />
+                                <ParkingSpace_List />
+                                <ParkingSpaceDetail />
+                            </div>
+                            <p>
+                                <Link to="/login">Logout</Link>
+                            </p>
+                        </div>
+                    </div>
             </div>
         );
     }

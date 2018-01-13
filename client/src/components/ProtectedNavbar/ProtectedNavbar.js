@@ -23,5 +23,7 @@ const PNavbar = props =>
         </div>
     </nav>;
 
+    
+
 export default PNavbar;
 

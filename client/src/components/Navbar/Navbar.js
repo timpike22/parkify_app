@@ -18,8 +18,8 @@ const Navbar = props =>
             <ul className="navbar-nav mr-auto">
             </ul>
             <form className="form-inline my-2 my-md-0">
-                <button className="btn btn-secondary my-2 owner-login" type="submit">Driver Log In</button>
-                <button className="btn btn-primary my-2 my-sm-0 driver-login" type="submit">Owner Log In</button>
+                <Link to="/logindriver"className="btn btn-secondary my-2 owner-login" type="submit">Driver Log In</Link>
+                <Link to="/loginowner" className="btn btn-primary my-2 my-sm-0 driver-login" type="submit">Owner Log In</Link>
             </form>
         </div>
     </nav>;
