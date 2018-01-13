@@ -8,6 +8,7 @@
     "bootstrap": "^3.3.7",
     "google-map-react": "^0.27.0",
     "google-maps-react": "^1.1.2",
+    "history": "^4.7.2",
     "react": "^16.2.0",
     "react-app-env": "^1.2.0",
     "react-bootstrap": "^0.31.5",
