@@ -49,8 +49,8 @@ class App extends React.Component {
         
               <Wrapper> 
                 <Switch> 
-                <Route path="*" component={NotFound} />  
-                <Route exact path="/error" component={NotFound}  />    
+                {/* <Route path="*" component={NotFound} />  */}
+   
                 <Route exact path="/logindriver" component={DriverLoginPage} />
                 <Route exact path="/" component={RegisterPage} />
                 <Route exact path="/loginowner" component={OwnerLoginPage} />

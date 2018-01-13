@@ -10,7 +10,7 @@ import Jumbotron from '../components/Jumbotron';
 import axios from 'axios';
 import './form.css';
 import Navbar from '../components/Navbar';
-import { DriverLoginPage } from '../DriverLogin';
+
 
 class RegisterPage extends React.Component {
     constructor(props) {
