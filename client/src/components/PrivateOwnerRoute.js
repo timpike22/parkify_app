@@ -7,7 +7,7 @@ export const PrivateOwnerRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={props => (
         localStorage.getItem('owner')
             ? <Component {...props} />
-            : <Redirect to={{ pathname: '/ownerhomepage', state: { from: props.location } }} />
+            : <Redirect to={{ pathname: '/', state: { from: props.location } }} />
     )} />
 )
 
