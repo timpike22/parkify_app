@@ -72,7 +72,7 @@ class OwnerRegisterPage extends React.Component {
                     console.log(response.statusText);
                     if (response.statusText === "OK") {
                         dispatch(ownerRegisterSuccess(response.data))
-                        localStorage.setItem("owner", response.data);
+                        localStorage.setItem("owner", response.data._id);
                         history.push('/OwnerHomePage')
                     } else {
                         dispatch(ownerRegisterFailure())

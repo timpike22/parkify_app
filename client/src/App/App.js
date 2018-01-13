@@ -18,7 +18,8 @@ import { Navbar } from '../components/Navbar';
 import Wrapper from '../components/Wrapper';
 import Footer from '../components/Footer';
 import NotFound from '../NotFound';
-
+import { CreateVehicleForm } from '../VehicleForms';
+import { CreateParkingSpotForm } from '../ParkingSpotForms';
 
 
 
@@ -52,6 +53,8 @@ class App extends React.Component {
                 <Route exact path="/logindriver" component={DriverLoginPage} />
                 <Route exact path="/" component={RegisterPage} />
                 <Route exact path="/loginowner" component={OwnerLoginPage} />
+                <Route exact path="/create/vehicle" component={CreateVehicleForm} />
+                <Route exact path="/create/parkingspot" component={CreateParkingSpotForm} />
                 <PrivateDriverRoute exact driverAuth={driverAuthentication} path="/driverhomepage" component={DriverHomePage} />
                 <PrivateOwnerRoute exact ownerAuth={ownerAuthentication} path="/ownerhomepage" component={OwnerHomePage} />
                 <Route path="*" component={NotFound} /> 

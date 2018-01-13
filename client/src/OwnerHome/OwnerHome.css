@@ -1,0 +1,26 @@
+.container-fluid {
+    width: 95%;
+}
+
+.card {
+    padding: 2%;
+    background:#2C2E2E;
+    color: white;
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.card:last-child {
+    margin-right: 0px;
+    padding: 2%;
+    background:#2C2E2E;
+    color: white;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 578px) {
+    .jumbotron {
+        box-sizing: unset;
+    }
+    
+}
