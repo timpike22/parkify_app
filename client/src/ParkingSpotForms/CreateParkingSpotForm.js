@@ -66,6 +66,16 @@ class CreateParkingSpotForm extends React.Component {
                 if (response.statusText === "OK") {
                     dispatch(createSuccess(response.data))
                     localStorage.setItem("parkingSpot", response.data);
+                    this.setState({
+                        parkingSpot: {
+                            ownerID: '',
+                            street: '',
+                            city: '',
+                            state: '',
+                            zip: ''
+                        },
+                        submitted: false
+                    })
                     history.push('/OwnerHomePage')
                 } else {
                     dispatch(createFailure())

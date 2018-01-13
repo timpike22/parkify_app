@@ -66,6 +66,16 @@ class CreateVehicleForm extends React.Component {
                 if (response.statusText === "OK") {
                     dispatch(createSuccess(response.data))
                     localStorage.setItem("vehicle", response.data);
+                    this.setState({
+                        vehicle: {
+                            driverID: '',
+                            make: '',
+                            model: '',
+                            year: '',
+                            color: ''
+                        },
+                        submitted: false
+                    })
                     history.push('/DriverHomePage')
                 } else {
                     dispatch(createFailure())
