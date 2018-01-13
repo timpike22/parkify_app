@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ownerService} from '../services'
@@ -177,4 +177,4 @@ function mapStateToProps(state) {
 }
 
 const connectedOwnerRegisterPage = connect(mapStateToProps)(OwnerRegisterPage);
-export { connectedOwnerRegisterPage as OwnerRegisterPage };
+export { connectedOwnerRegisterPage as OwnerRegisterPage };*/

@@ -30,6 +30,8 @@ class RegisterPage extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    
+
     componentDidUpdate() {
         console.log('state:', this.state);
     }

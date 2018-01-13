@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { driverService } from '../services'
@@ -137,4 +137,4 @@ function mapStateToProps(state) {
 }
 
 const connectedDriverRegisterPage = connect(mapStateToProps)(DriverRegisterPage);
-export { connectedDriverRegisterPage as DriverRegisterPage };
+export { connectedDriverRegisterPage as DriverRegisterPage };*/
